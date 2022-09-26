@@ -23,3 +23,13 @@
   background: #f3bcff;
   border-color: #e56fff85;
 }
+
+.form-control.invalid input {
+  border-color: rgb(180, 0, 0);
+  background: rgb(197, 35, 35);
+}
+
+.form-control.invalid label {
+  color: firebrick;
+}
+
