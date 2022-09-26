@@ -50,7 +50,6 @@ const App = () => {
     <div className='main-app'>
       <section id='task-form'>
         <TaskInput onAddTask={addTaskHandler} />
-        <button className='button'>Test</button>
       </section>
       <section id='tasks'>{taskContent}</section>
     </div>
