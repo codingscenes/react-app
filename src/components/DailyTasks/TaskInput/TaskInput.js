@@ -4,21 +4,35 @@ import './TaskInput.css';
 
 const TaskInput = (props) => {
   const [inputValue, setInputValue] = useState('');
+  const [isValid, setIsValid] = useState(true);
 
   const taskInputHandler = (event) => {
+    setIsValid(true);
     setInputValue(event.target.value);
   };
 
   const formSubmitHandler = (event) => {
     event.preventDefault();
+
+    if (inputValue.trim().length === 0) {
+      setIsValid(false);
+      return;
+    }
+
     props.onAddTask(inputValue);
+    setInputValue('');
   };
 
   return (
     <form onSubmit={formSubmitHandler}>
       <div className='form-control'>
-        <label htmlFor='Task Name'>Task Name</label>
-        <input type='text' onChange={taskInputHandler} />
+        <label>Task Name</label>
+        <input
+          style={{
+            borderColor: !isValid ? 'firebrick' : '#ccc',
+            backgroundColor: !isValid ? 'firebrick' : 'transparent'
+          }}
+          value={inputValue} type='text' onChange={taskInputHandler} />
       </div>
       <Button type='submit'>Add Task</Button>
     </form>
