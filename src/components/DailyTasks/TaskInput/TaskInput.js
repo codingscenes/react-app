@@ -1,11 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import Button from '../../UI/Button/Button';
-
-
-const TaskInput = (props) => {
-
-  const FormControl = styled.div`
+const FormControl = styled.div`
   margin: 0.5rem 0;
 
 & label {
@@ -42,6 +38,10 @@ const TaskInput = (props) => {
 // }
 
   `;
+
+const TaskInput = (props) => {
+
+
 
   const [inputValue, setInputValue] = useState('');
   const [isValid, setIsValid] = useState(true);
