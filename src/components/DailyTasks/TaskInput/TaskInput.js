@@ -1,25 +1,24 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
 import Button from '../../UI/Button/Button';
 
+import styled from 'styled-components';
 
-const TaskInput = (props) => {
+const FormControl = styled.div`
 
-  const FormControl = styled.div`
   margin: 0.5rem 0;
 
-& label {
-  font-weight: bold;
+ & label {
+  font-weight: ${(props) => props.boldLabel};
   display: block;
   margin-bottom: 0.5rem;
-  color: ${props => props.invalid ? 'firebrick' : 'black'}
+  color: ${(props) => props.invalid ? 'firebrick' : '#000'};
 }
 
 & input {
   display: block;
   width: 100%;
-  border: 1px solid ${props => props.invalid ? 'rgb(180, 0, 0)' : '#ccc'};
-  background: ${props => props.invalid ? 'rgb(197, 35, 35)' : 'transparent'};
+  border: 1px solid ${(props) => props.invalid ? 'rgb(180, 0, 0)' : '#ccc'};
+  background: ${(props) => props.invalid ? 'rgb(197, 35, 35)' : 'transparent'};
   font: inherit;
   line-height: 1.5rem;
   padding: 0 0.28rem;
@@ -41,7 +40,10 @@ const TaskInput = (props) => {
 //   color: firebrick;
 // }
 
-  `;
+
+`;
+
+const TaskInput = (props) => {
 
   const [inputValue, setInputValue] = useState('');
   const [isValid, setIsValid] = useState(true);
@@ -77,7 +79,7 @@ const TaskInput = (props) => {
           value={inputValue} type='text' onChange={taskInputHandler} />
       </FormControl> */}
 
-      <FormControl invalid={!isValid}>
+      <FormControl invalid={!isValid} boldLabel={'bold'} >
         <label>Task Name</label>
         <input
           value={inputValue} type='text' onChange={taskInputHandler} />
