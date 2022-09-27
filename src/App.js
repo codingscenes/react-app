@@ -1,10 +1,11 @@
 import React from 'react';
-function App() {
-  return (
-    <div>
-      <h1>Hello World!</h1>
-    </div>
-  );
+import Modal from './components/Modal';
+import TaskLists from './components/TaskLists';
+
+const App = () => {
+  return (<div className="main">
+    <TaskLists />
+  </div>)
 }
 
 export default App;
