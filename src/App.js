@@ -1,13 +1,26 @@
-import React from 'react';
-import Modal from './components/Modal';
-import TaskLists from './components/TaskLists';
+import React, { useState } from 'react';
 
-const App = () => {
+import AddUser from './components/Users/AddUser';
+import UsersList from './components/Users/UsersList';
+
+function App() {
+  const [usersList, setUsersList] = useState([]);
+
+  const addUserHandler = (name, mobNo) => {
+    setUsersList((prevUsersList) => {
+      return [
+        ...prevUsersList,
+        { name: name, mobNo: mobNo, id: Math.random().toString() },
+      ];
+    });
+  };
+
   return (
-    <div className='main'>
-      <TaskLists />
+    <div>
+      <AddUser onAddUser={addUserHandler} />
+      <UsersList users={usersList} />
     </div>
   );
-};
+}
 
 export default App;
