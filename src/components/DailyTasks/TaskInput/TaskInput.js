@@ -1,47 +1,48 @@
 import React, { useState } from 'react';
 import Button from '../../UI/Button/Button';
+import styles from './TaskInput.module.css';
 
-import styled from 'styled-components';
+// import styled from 'styled-components';
 
-const FormControl = styled.div`
+// const FormControl = styled.div`
 
-  margin: 0.5rem 0;
+//   margin: 0.5rem 0;
 
- & label {
-  font-weight: ${(props) => props.boldLabel};
-  display: block;
-  margin-bottom: 0.5rem;
-  color: ${(props) => props.invalid ? 'firebrick' : '#000'};
-}
-
-& input {
-  display: block;
-  width: 100%;
-  border: 1px solid ${(props) => props.invalid ? 'rgb(180, 0, 0)' : '#ccc'};
-  background: ${(props) => props.invalid ? 'rgb(197, 35, 35)' : 'transparent'};
-  font: inherit;
-  line-height: 1.5rem;
-  padding: 0 0.28rem;
-  border-radius: 8px;
-}
-
-& input:focus {
-  outline: none;
-  background: #f3bcff;
-  border-color: #e56fff85;
-}
-
-// &.invalid input {
-//   border-color: rgb(180, 0, 0);
-//   background: rgb(197, 35, 35);
+//  & label {
+//   font-weight: ${(props) => props.boldLabel};
+//   display: block;
+//   margin-bottom: 0.5rem;
+//   color: ${(props) => props.invalid ? 'firebrick' : '#000'};
 // }
 
-// &.invalid label {
-//   color: firebrick;
+// & input {
+//   display: block;
+//   width: 100%;
+//   border: 1px solid ${(props) => props.invalid ? 'rgb(180, 0, 0)' : '#ccc'};
+//   background: ${(props) => props.invalid ? 'rgb(197, 35, 35)' : 'transparent'};
+//   font: inherit;
+//   line-height: 1.5rem;
+//   padding: 0 0.28rem;
+//   border-radius: 8px;
 // }
 
+// & input:focus {
+//   outline: none;
+//   background: #f3bcff;
+//   border-color: #e56fff85;
+// }
 
-`;
+// // &.invalid input {
+// //   border-color: rgb(180, 0, 0);
+// //   background: rgb(197, 35, 35);
+// // }
+
+// // &.invalid label {
+// //   color: firebrick;
+// // }
+
+
+// `;
 
 const TaskInput = (props) => {
 
@@ -67,23 +68,11 @@ const TaskInput = (props) => {
 
   return (
     <form onSubmit={formSubmitHandler}>
-      {/* <div className={`form-control ${!isValid ? 'invalid' : ''}`}>
+      <div className={`${styles['form-control']} ${!isValid && styles.invalid}`}>
         <label>Task Name</label>
         <input
           value={inputValue} type='text' onChange={taskInputHandler} />
-      </div> */}
-
-      {/* <FormControl className={ !isValid && 'invalid' }>
-        <label>Task Name</label>
-        <input
-          value={inputValue} type='text' onChange={taskInputHandler} />
-      </FormControl> */}
-
-      <FormControl invalid={!isValid} boldLabel={'bold'} >
-        <label>Task Name</label>
-        <input
-          value={inputValue} type='text' onChange={taskInputHandler} />
-      </FormControl>
+      </div>
 
       <Button type='submit'>Add Task</Button>
     </form>
