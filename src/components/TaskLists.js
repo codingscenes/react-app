@@ -20,7 +20,7 @@ const TaskLists = () => {
             <ul>
                 {tasks.map(task => <Task key={task.id} id={task.id} onDeleteTask={deleteTaskHandler}>{task.content}</Task>)}
             </ul>
-            {showModal && <Modal onClose={() => { setShowModal(false) }}>Do you want to delete?</Modal>}
+            {showModal && <Modal onClose={() => { setShowModal(false) }} content={'Do you want to delete?'} />}
         </>
 
     );
