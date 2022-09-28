@@ -2,3 +2,32 @@ body {
   margin: 0;
   font-family: Roboto, sans-serif;
 }
+.margin15 {
+  margin: 15px;
+}
+.container {
+  margin-top: 2rem;
+}
+
+.form-group {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.card {
+  box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px,
+    rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+}
+
+.error {
+  color: red;
+}
+
+.card {
+  width: 50%;
+  padding: 10px;
+  margin: 20px auto;
+}
+.main {
+  margin-top: 25%;
+}
