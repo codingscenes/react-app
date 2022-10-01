@@ -1,41 +1,42 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect, useState } from 'react';
-import Login from './components/Login';
-import Timer from './components/Timer';
-import Welcome from './components/Welcome';
+/* eslint-disable no-unused-vars */
+import React, { useState } from 'react';
+import Flower from './components/Flower';
+import flowerURI from './urls';
+
 const App = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isWhiteChecked, setIsWhiteChecked] = useState(true);
+  const [isOrangeChecked, setIsOrangeChecked] = useState(false);
+  const [isPinkChecked, setIsPinkChecked] = useState(false);
 
-  useEffect(() => {
-    // side-effects
-    if (localStorage.getItem('isLoggedIn')) {
-      setIsLoggedIn(true);
-    }
-    // call an api
-  }, []); // [] => dependencies
-
-  useEffect(
-    function () {
-      /*side-effects*/
-      // call an api to show some one home page
-    },
-    []
-  );
-
-  const loginHandler = () => {
-    localStorage.setItem('isLoggedIn', 1);
-    setIsLoggedIn(true);
+  const checkedHandler = (event, type) => {
+    const isChecked = event.target.checked;
+    if (type === 'pink') setIsPinkChecked(isChecked);
+    if (type === 'orange') setIsOrangeChecked(isChecked);
+    if (type === 'white') setIsWhiteChecked(isChecked);
   };
-  const logoutHandler = () => {
-    setIsLoggedIn(false);
-    localStorage.removeItem('isLoggedIn');
-  };
+
   return (
-    // <div className='main'>
-    //   {!isLoggedIn && <Login onLogin={loginHandler} />}
-    //   {isLoggedIn && <Welcome onLogout={logoutHandler} />}
-
-      // {/* <Timer /> */}
+    <div className='main'>
+      <div className='flower-pot '>
+        <Flower
+          value={isPinkChecked}
+          type={'pink'}
+          imgUrl={flowerURI.pink}
+          onChecked={checkedHandler}
+        />
+        <Flower
+          value={isWhiteChecked}
+          type={'white'}
+          imgUrl={flowerURI.white}
+          onChecked={checkedHandler}
+        />
+        <Flower
+          value={isOrangeChecked}
+          type={'orange'}
+          imgUrl={flowerURI.orange}
+          onChecked={checkedHandler}
+        />
+      </div>
     </div>
   );
 };
