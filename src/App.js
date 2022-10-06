@@ -2,6 +2,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
 import FloorA from './components/FloorA';
+import StatusBar from './components/StatusBar';
 
 const App = () => {
   const [product, setProduct] = useState({ item: 'Orange' });
@@ -13,6 +14,7 @@ const App = () => {
 
   return (
     <React.Fragment>
+      <StatusBar bag={product.item} isReceived={isReceived} />
       <FloorA
         bag={product.item}
         doConfirm={() => setIsReceived(true)}
