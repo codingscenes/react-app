@@ -1,31 +1,24 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
-import Login from './components/Login';
+import FloorA from './components/FloorA';
 
-import Main from './components/Main';
-import Welcome from './components/Welcome';
 const App = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [product, setProduct] = useState({ item: 'Orange' });
+  const [isReceived, setIsReceived] = useState(false);
 
   useEffect(() => {
-    if (localStorage.getItem('isLoggedIn')) {
-      setIsLoggedIn(true);
-    }
-  }, []);
+    if (isReceived) alert('Product received at FloorC');
+  }, [isReceived]);
 
-  const loginHandler = () => {
-    localStorage.setItem('isLoggedIn', 1);
-    setIsLoggedIn(true);
-  };
-  const logoutHandler = () => {
-    setIsLoggedIn(false);
-    localStorage.removeItem('isLoggedIn');
-  };
   return (
-    <div className='main'>
-      {!isLoggedIn && <Login onLogin={loginHandler} />}
-      {isLoggedIn && <Main LoggedOut={logoutHandler} />}
-    </div>
+    <React.Fragment>
+      <FloorA
+        bag={product.item}
+        doConfirm={() => setIsReceived(true)}
+        isReceived={isReceived}
+      />
+    </React.Fragment>
   );
 };
 
