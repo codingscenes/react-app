@@ -41,6 +41,7 @@ body {
   align-items: center;
   height: 50px;
   border-bottom: 1px solid #ccc;
+  padding: 10px;
 }
 
 .navbar-nav {
@@ -49,7 +50,7 @@ body {
   justify-content: space-evenly;
   align-items: center;
   flex-wrap: nowrap;
-  width: 235px;
+  width: 335px;
   margin-right: 44px;
 }
 

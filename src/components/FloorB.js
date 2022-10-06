@@ -4,7 +4,7 @@ import FloorC from './FloorC';
 const FloorB = (props) => {
   return (
     <FloorC
-      bag={props.bag}
+      product={props.product}
       doConfirm={props.doConfirm}
       isReceived={props.isReceived}
     />
