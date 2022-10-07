@@ -63,3 +63,63 @@ body {
   color: rgb(3, 3, 255);
   font-weight: bold;
 }
+
+.margin-top-10 {
+  margin-top: 10px;
+}
+
+.body-black {
+  background-color: black;
+}
+.input-black {
+  background-color: #2f2f2f;
+  color: #fff;
+  border-color: #2e2d2d;
+}
+.input-black:focus {
+  color: #212529;
+  background-color: #2f2f2f;
+  border-color: #2e2d2d;
+  outline: 0;
+  box-shadow: 0 0 0 0.25rem rgba(152, 152, 152, 0.25);
+}
+.button-black {
+  --bs-btn-bg: #323232;
+  --bs-btn-border-color: #2f2f2f;
+}
+.btn.button-black:hover {
+  background-color: #100c0c;
+  border-color: #4a4a4a;
+}
+.black-card {
+  background-color: #4b4b4b;
+  color: #fff;
+  border: 1px solid #ccc;
+}
+.main-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #f1f1f1;
+  padding: 0 1rem;
+  border: 1px solid #ccc;
+  color: #000;
+}
+.main-header-black {
+  background-color: #1e1e1e !important;
+  color: #fff !important;
+  border-color: #242424;
+}
+.margin-top20 {
+  margin-top: 30px;
+}
+
+.input-black[type='checkbox']:checked {
+  background-color: #494949;
+  border-color: #494949;
+}
