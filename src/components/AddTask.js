@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+import ThemeContext from '../context/theme-context';
 
-const AddTask = ({ onAddTask, isDark }) => {
+const AddTask = ({ onAddTask }) => {
   const [inputVal, setInputVal] = useState('');
+  const context = useContext(ThemeContext);
 
   const inputHandler = (e) => {
     setInputVal(e.target.value);
@@ -15,7 +17,7 @@ const AddTask = ({ onAddTask, isDark }) => {
       <div className='col'>
         <input
           type='text'
-          className={`form-control ${isDark && 'input-black'}`}
+          className={`form-control ${context.isDark && 'input-black'}`}
           placeholder='Enter Task'
           onChange={inputHandler}
           value={inputVal}
@@ -23,7 +25,7 @@ const AddTask = ({ onAddTask, isDark }) => {
 
         <button
           className={`btn btn-primary margin-top-10 ${
-            isDark && 'button-black '
+            context.isDark && 'button-black '
           }`}
           onClick={clickHandler}
         >

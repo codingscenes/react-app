@@ -1,18 +1,21 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
-const Header = ({ onThemeChanged, isDark }) => {
+import ThemeContext from './../context/theme-context';
+
+const Header = () => {
+  const context = useContext(ThemeContext);
   return (
-    <header className={`main-header ${isDark && 'main-header-black'}`}>
+    <header className={`main-header ${context.isDark && 'main-header-black'}`}>
       <h3>TO DO APP</h3>
       <div className='form-check form-switch'>
         <input
-          className={`form-check-input ${isDark && 'input-black'}`}
+          className={`form-check-input ${context.isDark && 'input-black'}`}
           type='checkbox'
           id='themeSwitch'
           name='darkMode'
           value='dark'
-          onChange={onThemeChanged}
-          checked={isDark}
+          onChange={context.onThemeChanged}
+          checked={context.isDark}
         />
         <label className='form-check-label' htmlFor='themeSwitch'>
           Dark Mode

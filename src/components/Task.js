@@ -1,7 +1,11 @@
-import React from 'react';
+import React, {useContext} from 'react';
+import ThemeContext from '../context/theme-context';
 
-const Task = ({ isDark, content }) => {
-    return <div className={`card width-100 ${isDark && 'black-card'}`}>
+
+const Task = ({ content }) => {
+    const context = useContext(ThemeContext);
+
+    return <div className={`card width-100 ${context.isDark && 'black-card'}`}>
         {content}
     </div>;
 };

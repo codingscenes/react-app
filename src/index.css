@@ -77,7 +77,7 @@ body {
   border-color: #2e2d2d;
 }
 .input-black:focus {
-  color: #212529;
+  color: #fff;
   background-color: #2f2f2f;
   border-color: #2e2d2d;
   outline: 0;
