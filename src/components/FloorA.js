@@ -3,11 +3,7 @@ import FloorB from './FloorB';
 
 const FloorA = (props) => {
   return (
-    <FloorB
-      product={props.product}
-      doConfirm={props.doConfirm}
-      isReceived={props.isReceived}
-    />
+    <FloorB/>
   );
 };
 

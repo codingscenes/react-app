@@ -2,13 +2,7 @@ import React from 'react';
 import FloorC from './FloorC';
 
 const FloorB = (props) => {
-  return (
-    <FloorC
-      product={props.product}
-      doConfirm={props.doConfirm}
-      isReceived={props.isReceived}
-    />
-  );
+  return <FloorC />;
 };
 
 export default FloorB;

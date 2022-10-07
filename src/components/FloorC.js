@@ -1,15 +1,22 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
-const FloorC = ({ product, doConfirm, isReceived }) => {
+import ProductContext from '../context/product-context';
+
+const FloorC = () => {
+  const context = useContext(ProductContext);
+
   return (
     <div className='container'>
-      <h2>Product received: {product}</h2>
+      <h2>Product received: {context.product}</h2>
       <hr />
-      {isReceived ? (
+      {context.isReceived ? (
         '✔️ Thank you for confirmation!'
       ) : (
-          <button className='btn btn-primary'
-            type='button' onClick={doConfirm}>
+        <button
+          className='btn btn-primary'
+          type='button'
+          onClick={context.doConfirm}
+        >
           Confirm
         </button>
       )}
