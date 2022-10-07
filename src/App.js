@@ -18,26 +18,21 @@ const App = () => {
       bodyElem.classList.remove('body-black');
     }
   }, [isDark]);
+
   return (
     <div className='container'>
-      <div className='row'>
-        <div className='col'>
-          <Header
-            onThemeChanged={() => setIsDark((prev) => !prev)}
-            isDark={isDark}
-          />
-        </div>
+      <div className='row col'>
+        <Header
+          onThemeChanged={() => setIsDark((prev) => !prev)}
+          isDark={isDark}
+        />
       </div>
-      <div className='row margin-top20'>
-        <div className='col-xs-12 col-md-8 col-lg-6'>
-          <AddTask onAddTask={addTaskHandler} isDark={isDark} />
-        </div>
+      <div className='row col-md-8 col-lg-6 margin-top20'>
+        <AddTask onAddTask={addTaskHandler} isDark={isDark} />
       </div>
 
-      <div className='row'>
-        <div className='col-xs-12 col-md-8 col-lg-6'>
-          <DisplayTask tasks={tasks} isDark={isDark} />
-        </div>
+      <div className='row col-md-8 col-lg-6'>
+        <DisplayTask tasks={tasks} isDark={isDark} />
       </div>
     </div>
   );
