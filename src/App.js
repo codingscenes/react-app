@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import Login from './components/Login';
 
 import Main from './components/Main';
-import Welcome from './components/Welcome';
+
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
@@ -17,10 +17,12 @@ const App = () => {
     localStorage.setItem('isLoggedIn', 1);
     setIsLoggedIn(true);
   };
+
   const logoutHandler = () => {
     setIsLoggedIn(false);
     localStorage.removeItem('isLoggedIn');
   };
+
   return (
     <div className='main'>
       {!isLoggedIn && <Login onLogin={loginHandler} />}

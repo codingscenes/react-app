@@ -3,12 +3,12 @@ import React from 'react';
 const NavBar = ({ onLogout }) => {
   return (
     <nav>
-      <div class='container-fluid navbar_container'>
-        <a class='navbar-brand' href='#'>
+      <div className='container-fluid navbar_container'>
+        <a class='navbar-brand' href='#logo'>
           DemoApp
         </a>
 
-        <div class='' id='navbarNav'>
+        <div className='' id='navbarNav'>
           <ul class='navbar-nav'>
             <li class='nav-item active'>Home</li>
             <li class='nav-item'>Profile</li>

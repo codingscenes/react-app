@@ -52,6 +52,7 @@ const Login = (props) => {
       dispatchLoginAction({ type: EMAIL_PASSWORD, payload: value });
     }
   };
+  
   const loginHandler = () => {
     props.onLogin();
   };
