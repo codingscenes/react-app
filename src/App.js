@@ -6,6 +6,7 @@ import Input from './UI/Input';
 class App extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
       fullName: '',
     };
