@@ -1,6 +1,17 @@
-import React from 'react';
+import React, {
+  createRef,
+  forwardRef,
+  useImperativeHandle,
+  useRef,
+} from 'react';
 
-const Input = (props) => {
+const Input = forwardRef((props, ref) => {
+  const inputRef = useRef();
+  useImperativeHandle(ref, () => {
+    return {
+      focusInput: () => inputRef.current.focus(),
+    };
+  });
   return (
     <div className='form-group'>
       <label htmlFor={props.label}>{props.label}</label>
@@ -11,9 +22,10 @@ const Input = (props) => {
         className={`form-control ${props.invalid && 'invalid'} `}
         onChange={props.onInputChange}
         autoComplete={'off'}
+        ref={inputRef}
       />
     </div>
   );
-};
+});
 
 export default Input;
