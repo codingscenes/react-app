@@ -1,6 +1,7 @@
 body {
   margin: 0;
   font-family: Roboto, sans-serif;
+  background: #deeced;
 }
 .margin15 {
   margin: 15px;
@@ -61,4 +62,9 @@ body {
 .navbar-nav li:hover {
   color: rgb(3, 3, 255);
   font-weight: bold;
+}
+
+.form-control.invalid {
+  background: linear-gradient(rgb(237, 194, 196) 0%, rgb(237, 194, 196) 100%);
+  border: 1px solid #ffb2b2;
 }
