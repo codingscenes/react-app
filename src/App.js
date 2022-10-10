@@ -1,11 +1,11 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { createRef, useState } from 'react';
+import React, { createRef, useRef, useState } from 'react';
 import Input from './UI/Input';
 
 const App = () => {
   const [fullName, setFullName] = useState('');
-  const childRef = createRef();
+  const childRef = useRef();
 
   const changeHandler = (event) => {
     const value = event.target.value;
