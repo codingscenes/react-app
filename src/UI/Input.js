@@ -1,31 +1,26 @@
-import React, {
-  createRef,
-  forwardRef,
-  useImperativeHandle,
-  useRef,
-} from 'react';
+import React, { Component, createRef } from 'react';
 
-const Input = forwardRef((props, ref) => {
-  const inputRef = useRef();
-  useImperativeHandle(ref, () => {
-    return {
-      focusInput: () => inputRef.current.focus(),
-    };
-  });
-  return (
-    <div className='form-group'>
-      <label htmlFor={props.label}>{props.label}</label>
-      <input
-        type={props.type}
-        name={props.name}
-        value={props.value}
-        className={`form-control ${props.invalid && 'invalid'} `}
-        onChange={props.onInputChange}
-        autoComplete={'off'}
-        ref={inputRef}
-      />
-    </div>
-  );
-});
+class Input extends Component {
+  inputRef = createRef();
+  focusInput = () => {
+    this.inputRef.current.focus();
+  };
+  render() {
+    return (
+      <div className='form-group'>
+        <label htmlFor={this.props.label}>{this.props.label}</label>
+        <input
+          type={this.props.type}
+          name={this.props.name}
+          value={this.props.value}
+          className={`form-control ${this.props.invalid && 'invalid'} `}
+          onChange={this.props.onInputChange}
+          autoComplete={'off'}
+          ref={this.inputRef}
+        />
+      </div>
+    );
+  }
+}
 
 export default Input;

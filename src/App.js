@@ -1,39 +1,45 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { createRef, useRef, useState } from 'react';
+import React, { Component, createRef, useRef, useState } from 'react';
 import Input from './UI/Input';
 
-const App = () => {
-  const [fullName, setFullName] = useState('');
-  const childRef = useRef();
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      fullName: '',
+    };
+  }
+  childRef = createRef();
 
-  const changeHandler = (event) => {
+  changeHandler = (event) => {
     const value = event.target.value;
-    setFullName(value);
   };
 
-  const focusHandler = () => {
-    childRef.current.focusInput();
+  focusHandler = () => {
+    this.childRef.current.focusInput();
   };
 
-  return (
-    <div className='main'>
-      <div className='card'>
-        <Input
-          type={'text'}
-          name={'fullName'}
-          value={fullName}
-          label={'Full Name'}
-          invalid={false}
-          onInputChange={changeHandler}
-          ref={childRef}
-        />
-        <button className='btn btn-primary' onClick={focusHandler}>
-          Focus Input Field
-        </button>
+  render() {
+    return (
+      <div className='main'>
+        <div className='card'>
+          <Input
+            type={'text'}
+            name={'fullName'}
+            value={this.state.fullName}
+            label={'Full Name'}
+            invalid={false}
+            onInputChange={this.changeHandler}
+            ref={this.childRef}
+          />
+          <button className='btn btn-primary' onClick={this.focusHandler}>
+            Focus Input Field
+          </button>
+        </div>
       </div>
-    </div>
-  );
-};
+    );
+  }
+}
 
 export default App;
