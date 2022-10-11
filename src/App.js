@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { Component, createRef, useRef, useState } from 'react';
+import React, { Component, createRef } from 'react';
 import Input from './UI/Input';
 
 class App extends Component {
@@ -11,14 +11,18 @@ class App extends Component {
       fullName: '',
     };
   }
-  childRef = createRef();
+
+  inputRef = createRef(null);
 
   changeHandler = (event) => {
     const value = event.target.value;
+    this.setState({ fullName: value });
   };
 
   focusHandler = () => {
-    this.childRef.current.focusInput();
+    console.log(this.inputRef);
+    // this.inputRef.current.focus();
+    this.inputRef.current.inputFocus();
   };
 
   render() {
@@ -30,12 +34,12 @@ class App extends Component {
             name={'fullName'}
             value={this.state.fullName}
             label={'Full Name'}
-            invalid={false}
+            htmlFor='fullName'
             onInputChange={this.changeHandler}
-            ref={this.childRef}
+            ref={this.inputRef}
           />
           <button className='btn btn-primary' onClick={this.focusHandler}>
-            Focus Input Field
+            Focus Input
           </button>
         </div>
       </div>
