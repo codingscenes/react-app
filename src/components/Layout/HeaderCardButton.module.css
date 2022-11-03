@@ -2,7 +2,7 @@
   cursor: pointer;
   font: inherit;
   border: none;
-  background-color: rgb(247, 96, 36);
+  background-color: #056db0;
   color: white;
   padding: 0.75rem 3rem;
   display: flex;
@@ -15,7 +15,7 @@
 
 .button:hover,
 .button:active {
-  background-color: rgb(216, 63, 3);
+  background-color: #eb650bae;
 }
 
 .icon {

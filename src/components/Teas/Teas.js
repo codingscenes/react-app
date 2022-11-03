@@ -1,9 +1,14 @@
+import { Fragment } from 'react';
+import AvailableTeas from './AvailableTeas';
+import TeasSummary from './TeasSummary';
 
+const Teas = () => {
+  return (
+    <Fragment>
+      <TeasSummary />
+      <AvailableTeas />
+    </Fragment>
+  );
+};
 
-const TeaList = () => {
-    return (
-
-    );
-}
-
-export default TeaList;
+export default Teas;
