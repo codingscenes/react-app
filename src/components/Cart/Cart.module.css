@@ -22,12 +22,12 @@
   cursor: pointer;
   background-color: transparent;
   border: 0.5rem 2rem;
-  border-radius: 25rem;
+  border-radius: 15rem;
   margin-left: 1rem;
 }
 
-.actions button:hover,
-.actions button:active {
+.actions .button--alt:hover,
+.actions .button--alt:active {
   background-color: #5a1a01;
   border-color: #5a1a01;
   color: white;
@@ -36,4 +36,5 @@
 .actions .button--alt {
   background-color: #8a2b06;
   color: white;
+  border-color: #8a2b06;
 }
