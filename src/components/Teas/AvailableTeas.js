@@ -35,13 +35,13 @@ const DUMMY_TEAS = [
   },
   {
     id: 'a6',
-    name: 'Normal Coffee',
+    name: 'Plain Coffee',
     description: 'Normal Coffee is good for health, enjoy it every day',
     price: 190,
   },
   {
     id: 'a7',
-    name: 'Normal Tea',
+    name: 'Plain Tea',
     description: 'Normal Tea is good for health, enjoy it every day',
     price: 40,
   },
