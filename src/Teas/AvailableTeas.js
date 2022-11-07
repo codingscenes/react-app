@@ -55,6 +55,7 @@ const AvailableTeas = () => {
   const teaList = DUMMY_TEAS.map((tea) => (
     <TeaItem
       key={tea.id}
+      id={tea.id}
       name={tea.name}
       description={tea.description}
       price={tea.price}
