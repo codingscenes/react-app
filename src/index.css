@@ -72,3 +72,6 @@ input.form-control:focus,
 input.form-control:active {
   background-color: #ffb2b2;
 }
+.app {
+  text-align: center;
+}
