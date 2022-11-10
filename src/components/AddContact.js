@@ -37,7 +37,7 @@ const AddContact = (props) => {
           ref={contactNumRef}
         />
       </div>
-      <button>+Add</button>
+      <button>+ Save</button>
     </form>
   );
 };
