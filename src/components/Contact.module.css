@@ -13,6 +13,10 @@
   justify-content: flex-start;
   align-items: center;
 }
+.contact:hover,
+.contact:active {
+  background-color: #ba0f4beb;
+}
 .description {
   display: flex;
   flex-direction: column;
