@@ -1,0 +1,33 @@
+.contact {
+  margin: 1rem;
+  padding: 1rem;
+  background-color: #000000b6;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+  border-radius: 12px;
+  text-align: center;
+  color: #fff;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-content: center;
+  justify-content: flex-start;
+  align-items: center;
+}
+.description {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.description h2 {
+  font-size: 1.5rem;
+  color: #f7e702;
+}
+.description h3 {
+  color: #eccf77;
+  margin: 0;
+  font-size: 1rem;
+}
+.contact img {
+  width: 100px;
+}

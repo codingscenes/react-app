@@ -1,23 +1,41 @@
-import React, { useCallback, useState, useMemo } from 'react';
-import CustomList from './CustomList';
-import Button from './UI/Button';
+import React from 'react';
+import AddContact from './components/AddContact';
+import ContactList from './components/ContactList';
 
 const App = () => {
-  const [title, setTitle] = useState('Default Title');
-
-  const changeTitleHandler = useCallback(() => {
-    setTitle('New Title');
-  }, []);
-
-  const listItems = useMemo(() => [3, 5, 4, 1, 2], []);//memoized version
-
-  console.log('APP Component Running!');
-
+  const contactList = [
+    {
+      id: 1,
+      contactName: 'Rohit Sharma',
+      contactNum: '9833445566',
+      avatar: 'RohitSharma.svg',
+    },
+    {
+      id: 2,
+      contactName: 'Mohit Sharma',
+      contactNum: '8833445566',
+      avatar: 'MohitSharma.svg',
+    },
+    {
+      id: 3,
+      contactName: 'Raj Kumar',
+      contactNum: '7833444566',
+      avatar: 'RajKumar.svg',
+    },
+  ];
   return (
-    <div className='app'>
-      <CustomList title={title} list={listItems} />
-      <Button onClick={changeTitleHandler}>Change Title</Button>
-    </div>
+    <React.Fragment>
+      <section>
+        <button>Add Contact</button>
+        <button>Fetch Contact</button>
+      </section>
+      <section>
+        <AddContact />
+      </section>
+      <section>
+        <ContactList contacts={contactList} />
+      </section>
+    </React.Fragment>
   );
 };
 
