@@ -1,1 +1,22 @@
-"[{\"id\":1,\"contactName\":\"Rohit Sharma\",\"contactNum\":\"9833445566\",\"avatar\":\"RohitSharma.svg\"},{\"id\":2,\"contactName\":\"Mohit Sharma\",\"contactNum\":\"8833445566\",\"avatar\":\"MohitSharma.svg\"},{\"id\":3,\"contactName\":\"Raj Kumar\",\"contactNum\":\"7833444566\",\"avatar\":\"RajKumar.svg\"}]"
+{
+  "data": [
+    {
+      "id": 1,
+      "contactName": "Rohit Sharma",
+      "contactNum": "9833445566",
+      "avatar": "RohitSharma.svg"
+    },
+    {
+      "id": 2,
+      "contactName": "Mohit Sharma",
+      "contactNum": "8833445566",
+      "avatar": "MohitSharma.svg"
+    },
+    {
+      "id": 3,
+      "contactName": "Raj Kumar",
+      "contactNum": "7833444566",
+      "avatar": "RajKumar.svg"
+    }
+  ]
+}
