@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import AddContact from './components/AddContact';
 import ContactList from './components/ContactList';
 const DB_URL =
@@ -9,9 +9,10 @@ const App = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const fetchContactHandler = async () => {
+  const fetchContactHandler = useCallback(async () => {
     setIsLoading(true);
     setError(null);
+    
     try {
       const response = await fetch(DB_URL);
       if (!response.ok) throw new Error('Something went wrong!');
@@ -26,14 +27,18 @@ const App = () => {
           avatar: result[key].avatar,
         });
       }
-      
+
       setContacts(tempData);
     } catch (error) {
       console.log(error);
     } finally {
       setIsLoading(false);
     }
-  };
+  }, []);
+
+  useEffect(() => {
+    fetchContactHandler();
+  }, [fetchContactHandler]);
 
   const addContactHandler = async (contact) => {
     const data = {
