@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import AddContact from './components/AddContact';
 import ContactList from './components/ContactList';
-const DATA_URL =
-  'https://raw.githubusercontent.com/codingscenes/react-app/http-get-request/data.json';
+const DB_URL =
+  'https://fun-with-react-e16d9-default-rtdb.firebaseio.com/contact.json';
 
 const App = () => {
   const [contacts, setContacts] = useState([]);
@@ -13,18 +13,21 @@ const App = () => {
     setIsLoading(true);
     setError(null);
     try {
-      const response = await fetch(DATA_URL);
+      const response = await fetch(DB_URL);
       if (!response.ok) throw new Error('Something went wrong!');
       const result = await response.json();
-      const data = result.data.map((contactData) => {
-        return {
-          id: contactData.id,
-          contactName: contactData.name,
-          contactNum: contactData.number,
-          avatar: contactData.photo,
-        };
-      });
-      setContacts(data);
+      console.log(result);
+      const tempData = [];
+      for (const key in result) {
+        tempData.push({
+          id: key,
+          contactName: result[key].contactName,
+          contactNum: result[key].contactNum,
+          avatar: result[key].avatar,
+        });
+      }
+      
+      setContacts(tempData);
     } catch (error) {
       console.log(error);
     } finally {
@@ -32,8 +35,22 @@ const App = () => {
     }
   };
 
-  const addContactHandler = (contact) => {
-    console.log(contact);
+  const addContactHandler = async (contact) => {
+    const data = {
+      contactName: contact.contactName,
+      contactNum: contact.contactNum,
+      avatar: contact.contactName.trim().replaceAll(' ', '') + '.svg',
+    };
+    const response = await fetch(DB_URL, {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    const result = await response.json();
+
+    console.log(result);
   };
 
   let content = <p>No contact available!</p>;

@@ -9,9 +9,11 @@ const AddContact = (props) => {
     // skiping validation part
     const contact = {
       contactName: contactNameRef.current.value,
-      contactNum: contactNameRef.current.value,
+      contactNum: contactNumRef.current.value,
     };
 
+    contactNameRef.current.value = '';
+    contactNumRef.current.value = '';
     props.onAddContact(contact);
   };
   return (
