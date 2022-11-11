@@ -1,40 +1,65 @@
-import React from 'react';
+import React, { useState } from 'react';
 import AddContact from './components/AddContact';
 import ContactList from './components/ContactList';
+const DATA_URL =
+  'https://raw.githubusercontent.com/codingscenes/react-app/http-get-request/data.json';
 
 const App = () => {
-  const contactList = [
-    {
-      id: 1,
-      contactName: 'Rohit Sharma',
-      contactNum: '9833445566',
-      avatar: 'RohitSharma.svg',
-    },
-    {
-      id: 2,
-      contactName: 'Mohit Sharma',
-      contactNum: '8833445566',
-      avatar: 'MohitSharma.svg',
-    },
-    {
-      id: 3,
-      contactName: 'Raj Kumar',
-      contactNum: '7833444566',
-      avatar: 'RajKumar.svg',
-    },
-  ];
+  const [contacts, setContacts] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  const fetchContactHandler = async () => {
+    setIsLoading(true);
+    setError(null);
+    try {
+      const response = await fetch(DATA_URL);
+      if (!response.ok) throw new Error('Something went wrong!');
+      const result = await response.json();
+      const data = result.data.map((contactData) => {
+        return {
+          id: contactData.id,
+          contactName: contactData.name,
+          contactNum: contactData.number,
+          avatar: contactData.photo,
+        };
+      });
+      setContacts(data);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const addContactHandler = (contact) => {
+    console.log(contact);
+  };
+
+  let content = <p>No contact available!</p>;
+
+  if (contacts.length > 0) {
+    content = <ContactList contacts={contacts} />;
+  }
+
+  if (error) {
+    content = <p className='error'>{error}</p>;
+  }
+
+  if (isLoading) {
+    content = <p>Loading please wait...</p>;
+  }
+
   return (
     <React.Fragment>
       <section>
         <button>Add Contact</button>
-        <button>Fetch Contact</button>
+        <button onClick={fetchContactHandler}>Fetch Contact</button>
       </section>
       <section>
-        <AddContact />
+        <AddContact onAddContact={addContactHandler} />
       </section>
-      <section>
-        <ContactList contacts={contactList} />
-      </section>
+      <section>{content}</section>
     </React.Fragment>
   );
 };

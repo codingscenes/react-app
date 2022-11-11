@@ -39,3 +39,7 @@ button:active {
   background-color: #6f0a88de;
   border-color: #6f0a88de;
 }
+
+.error {
+  color: rgb(200, 3, 3);
+}
