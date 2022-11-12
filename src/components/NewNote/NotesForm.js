@@ -17,7 +17,7 @@ const NoteForm = (props) => {
   return (
     <form className='form' onSubmit={submitHandler}>
       <input type='text' ref={noteInputRef} />
-      <button>{props.loading ? 'Sending...' : 'Add Note'}</button>
+      <button>{props.loading ? 'Adding...' : 'Add Note'}</button>
     </form>
   );
 };

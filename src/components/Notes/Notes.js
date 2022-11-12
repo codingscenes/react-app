@@ -2,7 +2,7 @@ import Section from '../UI/Section';
 import NoteItem from './NotesItem';
 
 const Notes = (props) => {
-  let noteList = <h2>No notes found. Start adding some!</h2>;
+  let noteList = <h2>No notes found. Start adding first one.</h2>;
 
   if (props.items.length > 0) {
     noteList = (
@@ -21,7 +21,7 @@ const Notes = (props) => {
   }
 
   if (props.loading) {
-    content = 'Loading notes...';
+    content = 'Fetching notes. Please standby.';
   }
 
   return (
