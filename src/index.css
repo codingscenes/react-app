@@ -10,14 +10,14 @@ html {
 
 body {
   margin: 0;
-  background-color: #3f3f3f;
+  background-color: #171717;
 }
 
 button {
   cursor: pointer;
   font: inherit;
-  background-color: #7a0144;
-  border: 1px solid #7a0144;
+  background-color: #01337a;
+  border: 1px solid #01337a;
   border-radius: 20px;
   padding: 0.5rem 2rem;
   color: white;
@@ -25,8 +25,8 @@ button {
 
 button:hover,
 button:active {
-  background-color: #9c095a;
-  border-color: #9c095a;
+  background-color: #01204c;
+  border-color: #01204c;
 }
 .form {
   display: flex;
@@ -44,7 +44,7 @@ button:active {
 
 .form input:focus {
   outline: none;
-  border-color: #7a0144;
+  border-color: #01397a;
 }
 .note {
   border-bottom: 1px solid #ccc;

@@ -10,6 +10,7 @@ const NoteForm = (props) => {
 
     if (enteredValue.trim().length > 0) {
       props.onEnterNote(enteredValue);
+      noteInputRef.current.value = '';
     }
   };
 
