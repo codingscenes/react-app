@@ -1,13 +1,76 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap');
+
+* {
+  box-sizing: border-box;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+html {
+  font-family: 'Noto Sans JP', sans-serif;
+}
+
+body {
+  margin: 0;
+  background-color: #3f3f3f;
+}
+
+button {
+  cursor: pointer;
+  font: inherit;
+  background-color: #7a0144;
+  border: 1px solid #7a0144;
+  border-radius: 20px;
+  padding: 0.5rem 2rem;
+  color: white;
+}
+
+button:hover,
+button:active {
+  background-color: #9c095a;
+  border-color: #9c095a;
+}
+.form {
+  display: flex;
+  justify-content: space-between;
+}
+
+.form input {
+  font: inherit;
+  padding: 0.25rem;
+  border: none;
+  border-bottom: 3px solid #ccc;
+  flex: 1;
+  margin-right: 2rem;
+}
+
+.form input:focus {
+  outline: none;
+  border-color: #7a0144;
+}
+.note {
+  border-bottom: 1px solid #ccc;
+  padding: 1rem;
+  font-weight: bold;
+  font-size: 1.25rem;
+}
+
+.note:last-of-type {
+  border-bottom: none;
+}
+.container {
+  text-align: center;
+}
+
+.container ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+}
+.section {
+  max-width: 40rem;
+  margin: 2rem auto;
+  background-color: white;
+  padding: 1rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
 }
