@@ -8,7 +8,7 @@ function App() {
   const [error, setError] = useState(null);
   const [notes, setNotes] = useState([]);
 
-  const fetchNotes = async (noteText) => {
+  const fetchNotes = async () => {
     setIsLoading(true);
     setError(null);
     try {
@@ -21,9 +21,7 @@ function App() {
       }
 
       const data = await response.json();
-
       const loadedNotes = [];
-
       for (const noteKey in data) {
         loadedNotes.push({ id: noteKey, text: data[noteKey].text });
       }
