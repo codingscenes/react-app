@@ -8,7 +8,7 @@ function App() {
   const [error, setError] = useState(null);
   const [notes, setNotes] = useState([]);
 
-  const fetchNotes = async (noteText) => {
+  const fetchNotes = async () => {
     setIsLoading(true);
     setError(null);
     try {
