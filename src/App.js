@@ -2,36 +2,28 @@ import React, { useEffect, useState } from 'react';
 
 import NewNote from './components/NewNote/NewNote';
 import Notes from './components/Notes/Notes';
+import useHttp from './hooks/use-http';
 
 function App() {
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
   const [notes, setNotes] = useState([]);
 
-  const fetchNotes = async () => {
-    setIsLoading(true);
-    setError(null);
-    try {
-      const response = await fetch(
-        'https://react-learning-project-6b928-default-rtdb.firebaseio.com/notes.json'
-      );
-
-      if (!response.ok) {
-        throw new Error('Request failed!');
-      }
-
-      const data = await response.json();
-      const loadedNotes = [];
-      for (const noteKey in data) {
-        loadedNotes.push({ id: noteKey, text: data[noteKey].text });
-      }
-
-      setNotes(loadedNotes);
-    } catch (err) {
-      setError(err.message || 'Something went wrong!');
+  const transformNotes = (notesObj) => {
+    const loadedNotes = [];
+    for (const noteKey in notesObj) {
+      loadedNotes.push({ id: noteKey, text: notesObj[noteKey].text });
     }
-    setIsLoading(false);
+    setNotes(loadedNotes);
   };
+  const {
+    isLoading,
+    error,
+    sendRequest: fetchNotes,
+  } = useHttp(
+    {
+      url: 'https://react-learning-project-6b928-default-rtdb.firebaseio.com/notes.json',
+    },
+    transformNotes
+  );
 
   useEffect(() => {
     fetchNotes();
