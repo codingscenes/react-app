@@ -1,35 +1,37 @@
 import { useState } from 'react';
 
-const useHttp = () => {
-const [isLoading, setIsLoading] = useState(false);
-const [error, setError] = useState(null);
+const useHttp = (requestConfig, applyData) => {
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
 
-const sendRequest = async () => {
-  setIsLoading(true);
-  setError(null);
-  try {
-    const response = await fetch(
-      'https://react-learning-project-6b928-default-rtdb.firebaseio.com/notes.json'
-    );
+  const sendRequest = async () => {
+    setIsLoading(true);
+    setError(null);
+    try {
+      const response = await fetch(requestConfig.url, {
+        method: requestConfig.method,
+        headers: requestConfig.headers,
+        body: JSON.stringify(requestConfig.body),
+      });
 
-    if (!response.ok) {
-      throw new Error('Request failed!');
+      if (!response.ok) {
+        throw new Error('Request failed!');
+      }
+
+      const data = await response.json();
+      // sending Data back to component who is using this hook
+      applyData(data);
+    } catch (err) {
+      setError(err.message || 'Something went wrong!');
     }
+    setIsLoading(false);
+  };
 
-    const data = await response.json();
-    const loadedNotes = [];
-    for (const noteKey in data) {
-      loadedNotes.push({ id: noteKey, text: data[noteKey].text });
-    }
-
-  } catch (err) {
-    setError(err.message || 'Something went wrong!');
-  }
-  setIsLoading(false);
+  return {
+    isLoading,
+    error,
+    sendRequest,
+  };
 };
-
-
-}
-
 
 export default useHttp;
