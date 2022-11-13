@@ -7,27 +7,23 @@ import useHttp from './hooks/use-http';
 function App() {
   const [notes, setNotes] = useState([]);
 
-  const transformNotes = (notesObj) => {
-    const loadedNotes = [];
-    for (const noteKey in notesObj) {
-      loadedNotes.push({ id: noteKey, text: notesObj[noteKey].text });
-    }
-    setNotes(loadedNotes);
-  };
-  const {
-    isLoading,
-    error,
-    sendRequest: fetchNotes,
-  } = useHttp(
-    {
-      url: 'https://react-learning-project-6b928-default-rtdb.firebaseio.com/notes.json',
-    },
-    transformNotes
-  );
+  const { isLoading, error, sendRequest: fetchNotes } = useHttp();
 
   useEffect(() => {
-    fetchNotes();
-  }, []);
+    const transformNotes = (notesObj) => {
+      const loadedNotes = [];
+      for (const noteKey in notesObj) {
+        loadedNotes.push({ id: noteKey, text: notesObj[noteKey].text });
+      }
+      setNotes(loadedNotes);
+    };
+    fetchNotes(
+      {
+        url: 'https://react-learning-project-6b928-default-rtdb.firebaseio.com/notes.json',
+      },
+      transformNotes
+    );
+  }, [fetchNotes]);
 
   const noteAddHandler = (note) => {
     setNotes((prevNotes) => prevNotes.concat(note));
