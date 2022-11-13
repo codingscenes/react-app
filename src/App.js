@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-import NewNote from './components/NewNote/NewNotes';
+import NewNote from './components/NewNote/NewNote';
 import Notes from './components/Notes/Notes';
 
 function App() {

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 import Section from '../UI/Section';
-import NoteForm from './NotesForm';
+import NoteForm from './NoteForm';
 
 const NewNote = (props) => {
   const [isLoading, setIsLoading] = useState(false);

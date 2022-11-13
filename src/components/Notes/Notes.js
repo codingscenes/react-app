@@ -1,5 +1,5 @@
 import Section from '../UI/Section';
-import NoteItem from './NotesItem';
+import NoteItem from './NoteItem';
 
 const Notes = (props) => {
   let noteList = <h2>No notes found. Start adding first one.</h2>;
