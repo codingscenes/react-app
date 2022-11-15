@@ -1,12 +1,20 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const BasicInput = (props) => {
   const [inputValue, setInputValue] = useState('');
-  const [inputIsValid, setInputIsValid] = useState(true);
+  const [inputIsValid, setInputIsValid] = useState(false);
+  const [inputIsTouched, setInputIsTouched] = useState(false);
+
+  useEffect(() => {
+    //http
+    if (inputIsValid) {
+      console.log('Input is valid. please send to backend');
+    }
+  }, [inputIsValid]);
 
   const formSubmitHandler = (event) => {
-    //stop refreshing webpage- default browser behavior
     event.preventDefault();
+    setInputIsTouched(true);
 
     if (inputValue.trim() === '') {
       setInputIsValid(false);
@@ -14,13 +22,17 @@ const BasicInput = (props) => {
     }
     setInputIsValid(true);
     console.log(inputValue);
+    setInputValue('');
   };
 
   const inputChangeHandler = (event) => {
     setInputValue(event.target.value);
   };
 
-  const inputClasses = inputIsValid ? 'form-control' : 'form-control invalid';
+  const inputIsInvalid = inputIsTouched && !inputIsValid;
+
+  const inputClasses = inputIsInvalid ? 'form-control invalid' : 'form-control';
+
   return (
     <form onSubmit={formSubmitHandler}>
       <div className={inputClasses}>
@@ -32,7 +44,7 @@ const BasicInput = (props) => {
           onChange={inputChangeHandler}
           value={inputValue}
         />
-        {!inputIsValid && <p className='error-text'>Input is invalid!</p>}
+        {inputIsInvalid && <p className='error-text'>Input is invalid!</p>}
       </div>
       <div className='form-actions'>
         <button type='submit'>Submit</button>
