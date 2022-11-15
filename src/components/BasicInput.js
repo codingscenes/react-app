@@ -1,35 +1,38 @@
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 
 const BasicInput = (props) => {
-  const inputRef = useRef(null);
   const [inputValue, setInputValue] = useState('');
+  const [inputIsValid, setInputIsValid] = useState(true);
 
   const formSubmitHandler = (event) => {
-    event.preventDefault(); //stop refresh- default behavior
+    //stop refreshing webpage- default browser behavior
+    event.preventDefault();
 
+    if (inputValue.trim() === '') {
+      setInputIsValid(false);
+      return;
+    }
+    setInputIsValid(true);
     console.log(inputValue);
-    console.log(inputRef.current.value);
-    // setInputValue('') // React suggestion (handled by React)
-    inputRef.current.value = ''; // vanilla javascript => realDOM
-    // it is not suggested to touch or interact with DOM
   };
 
   const inputChangeHandler = (event) => {
     setInputValue(event.target.value);
   };
 
+  const inputClasses = inputIsValid ? 'form-control' : 'form-control invalid';
   return (
     <form onSubmit={formSubmitHandler}>
-      <div className='form-control'>
+      <div className={inputClasses}>
         <label htmlFor='name'>Your Name</label>
         <input
           type='text'
           id='name'
           autoComplete='off'
           onChange={inputChangeHandler}
-          ref={inputRef}
           value={inputValue}
         />
+        {!inputIsValid && <p className='error-text'>Input is invalid!</p>}
       </div>
       <div className='form-actions'>
         <button type='submit'>Submit</button>
