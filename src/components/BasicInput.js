@@ -1,43 +1,33 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 const BasicInput = (props) => {
   const [inputValue, setInputValue] = useState('');
-  const [inputIsValid, setInputIsValid] = useState(false);
   const [inputIsTouched, setInputIsTouched] = useState(false);
 
-  useEffect(() => {
-    //http
-    if (inputIsValid) {
-      console.log('Input is valid. please send to backend');
-    }
-  }, [inputIsValid]);
+  // evaluating input validation with input value
+  const inputIsValid = inputValue.trim() !== '';
+  const inputIsInvalid = inputIsTouched && !inputIsValid;
 
   const formSubmitHandler = (event) => {
     event.preventDefault();
     setInputIsTouched(true);
 
-    if (inputValue.trim() === '') {
-      setInputIsValid(false);
+    if (!inputIsValid) {
       return;
     }
-    setInputIsValid(true);
-    console.log(inputValue);
+
+    // re-setting form state
     setInputValue('');
+    setInputIsTouched(false);
   };
 
   const inputChangeHandler = (event) => {
-    setInputValue(event.target.value);
+    setInputValue(event.target.value); // setting state is async
   };
 
   const inputBlurHandler = (event) => {
     setInputIsTouched(true);
-    if (inputValue.trim() === '') {
-      setInputIsValid(false);
-      return;
-    }
   };
-
-  const inputIsInvalid = inputIsTouched && !inputIsValid;
 
   const inputClasses = inputIsInvalid ? 'form-control invalid' : 'form-control';
 
