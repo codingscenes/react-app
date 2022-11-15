@@ -29,6 +29,14 @@ const BasicInput = (props) => {
     setInputValue(event.target.value);
   };
 
+  const inputBlurHandler = (event) => {
+    setInputIsTouched(true);
+    if (inputValue.trim() === '') {
+      setInputIsValid(false);
+      return;
+    }
+  };
+
   const inputIsInvalid = inputIsTouched && !inputIsValid;
 
   const inputClasses = inputIsInvalid ? 'form-control invalid' : 'form-control';
@@ -43,6 +51,7 @@ const BasicInput = (props) => {
           autoComplete='off'
           onChange={inputChangeHandler}
           value={inputValue}
+          onBlur={inputBlurHandler}
         />
         {inputIsInvalid && <p className='error-text'>Input is invalid!</p>}
       </div>
