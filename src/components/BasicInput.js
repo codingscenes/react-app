@@ -1,56 +1,59 @@
 import { useState } from 'react';
 
 const BasicInput = (props) => {
-  const [inputValue, setInputValue] = useState('');
-  const [inputIsTouched, setInputIsTouched] = useState(false);
+  const [enteredName, setEnteredName] = useState('');
+  const [enteredNameTouched, setEnteredNameTouched] = useState(false);
 
   // evaluating input validation with input value
-  const inputIsValid = inputValue.trim() !== '';
-  const inputIsInvalid = inputIsTouched && !inputIsValid;
+  const enteredNameIsValid = enteredName.trim() !== '';
+  const nameInputIsInvalid = enteredNameTouched && !enteredNameIsValid;
 
   let formIsValid = false;
 
-  if (inputIsValid) {
+  if (enteredNameIsValid) {
     formIsValid = true;
   }
 
   const formSubmitHandler = (event) => {
     event.preventDefault();
-    setInputIsTouched(true);
+    setEnteredNameTouched(true);
 
-    if (!inputIsValid) {
+    if (!enteredNameIsValid) {
       return;
     }
 
     // re-setting form state
-    setInputValue('');
-    setInputIsTouched(false);
+    setEnteredName('');
+    setEnteredNameTouched(false);
   };
 
-  const inputChangeHandler = (event) => {
-    setInputValue(event.target.value); // setting state is async
+  const nameInputChangeHandler = (event) => {
+    setEnteredName(event.target.value); // setting state is async
   };
 
-  const inputBlurHandler = (event) => {
-    setInputIsTouched(true);
+  const nameInputBlurHandler = (event) => {
+    setEnteredNameTouched(true);
   };
 
-  const inputClasses = inputIsInvalid ? 'form-control invalid' : 'form-control';
+  const nameInputClasses = nameInputIsInvalid
+    ? 'form-control invalid'
+    : 'form-control';
 
   return (
     <form onSubmit={formSubmitHandler}>
-      <div className={inputClasses}>
+      <div className={nameInputClasses}>
         <label htmlFor='name'>Your Name</label>
         <input
           type='text'
           id='name'
           autoComplete='off'
-          onChange={inputChangeHandler}
-          value={inputValue}
-          onBlur={inputBlurHandler}
+          onChange={nameInputChangeHandler}
+          value={enteredName}
+          onBlur={nameInputBlurHandler}
         />
-        {inputIsInvalid && <p className='error-text'>Input is invalid!</p>}
+        {nameInputIsInvalid && <p className='error-text'>Name is invalid!</p>}
       </div>
+
       <div className='form-actions'>
         <button disabled={!formIsValid} type='submit'>
           Submit
