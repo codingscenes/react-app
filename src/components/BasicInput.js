@@ -8,6 +8,12 @@ const BasicInput = (props) => {
   const inputIsValid = inputValue.trim() !== '';
   const inputIsInvalid = inputIsTouched && !inputIsValid;
 
+  let formIsValid = false;
+
+  if (inputIsValid) {
+    formIsValid = true;
+  }
+
   const formSubmitHandler = (event) => {
     event.preventDefault();
     setInputIsTouched(true);
@@ -46,7 +52,9 @@ const BasicInput = (props) => {
         {inputIsInvalid && <p className='error-text'>Input is invalid!</p>}
       </div>
       <div className='form-actions'>
-        <button type='submit'>Submit</button>
+        <button disabled={!formIsValid} type='submit'>
+          Submit
+        </button>
       </div>
     </form>
   );
