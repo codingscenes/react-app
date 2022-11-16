@@ -12,13 +12,14 @@ const BasicInput = (props) => {
     reset: resetNameInput,
   } = useInput((value) => value.trim() !== '');
 
-  const [enteredEmail, setEnteredEmail] = useState('');
-  const [enteredEmailTouched, setEnteredEmailTouched] = useState(false);
-
-  // Email id validation check
-  const enteredEmailIsValid =
-    enteredEmail.trim() !== '' && enteredEmail.includes('@');
-  const emailInputIsInvalid = enteredEmailTouched && !enteredEmailIsValid;
+  const {
+    value: enteredEmail,
+    isValid: enteredEmailIsValid,
+    hasError: emailInputHasError,
+    valueChangeHandler: emailChangeHandler,
+    inputBlurHandler: emailBlurHandler,
+    reset: resetEmailInput,
+  } = useInput((value) => value.trim() !== '' && value.includes('@'));
 
   // form validity code starts here
   let formIsValid = false;
@@ -36,23 +37,13 @@ const BasicInput = (props) => {
 
     // re-setting form state
     resetNameInput();
-
-    setEnteredEmail('');
-    setEnteredEmailTouched(false);
-  };
-
-  const emailInputChangeHandler = (event) => {
-    setEnteredEmail(event.target.value);
-  };
-
-  const emailInputBlurHandler = (event) => {
-    setEnteredEmailTouched(true);
+    resetEmailInput();
   };
 
   const nameInputClasses = nameInputHasError
     ? 'form-control invalid'
     : 'form-control';
-  const emailInputClasses = emailInputIsInvalid
+  const emailInputClasses = emailInputHasError
     ? 'form-control invalid'
     : 'form-control';
 
@@ -76,11 +67,11 @@ const BasicInput = (props) => {
           type='text'
           id='email'
           autoComplete='off'
-          onChange={emailInputChangeHandler}
+          onChange={emailChangeHandler}
           value={enteredEmail}
-          onBlur={emailInputBlurHandler}
+          onBlur={emailBlurHandler}
         />
-        {emailInputIsInvalid && (
+        {emailInputHasError && (
           <p className='error-text'>Email-ID is invalid!</p>
         )}
       </div>
