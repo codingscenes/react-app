@@ -1,10 +1,9 @@
-import SimpleForm from './components/SimpleForm';
+import Counter from './components/Counter';
+
 
 function App() {
   return (
-    <div className='app'>
-      <SimpleForm />
-    </div>
+    <Counter />
   );
 }
 
