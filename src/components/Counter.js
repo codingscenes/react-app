@@ -1,70 +1,38 @@
-import { Component } from 'react';
-import { connect, useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
-// const Counter = () => {
-//   const counter = useSelector((state) => state.counter);
+const Counter = () => {
+  const counter = useSelector((state) => state.counter);
 
-//   const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-//   const toggleCounterHandler = () => {};
+  const toggleCounterHandler = () => {};
 
-//   const incrementHandler = () => {
-//     dispatch({ type: 'increment' });
-//   };
-
-//   const decrementHandler = () => {
-//     dispatch({ type: 'decrement' });
-//   };
-
-//   return (
-//     <main className='counter'>
-//       <h1>Redux Counter</h1>
-//       <div className='value'> {counter}</div>
-//       <div>
-//         <button onClick={incrementHandler}>Increment</button>
-//         <button onClick={decrementHandler}>Decrement</button>
-//       </div>
-//       <button onClick={toggleCounterHandler}>Toggle Counter</button>
-//     </main>
-//   );
-// };
-
-class Counter extends Component {
-  incrementHandler() {
-    this.props.increment();
-  }
-  decrementHandler() {
-    this.props.decrement();
-  }
-  toggleCounterHandler() {}
-  render() {
-    return (
-      <main className='counter'>
-        <h1>Redux Counter</h1>
-        <div className='value'> {this.props.counter}</div>
-        <div>
-          <button onClick={this.incrementHandler.bind(this)}>Increment</button>
-          <button onClick={this.decrementHandler.bind(this)}>Decrement</button>
-        </div>
-        <button onClick={this.toggleCounterHandler.bind(this)}>
-          Toggle Counter
-        </button>
-      </main>
-    );
-  }
-}
-
-const mapStateToProps = (state) => {
-  return {
-    counter: state.counter,
+  const incrementHandler = () => {
+    dispatch({ type: 'increment' });
   };
+
+  const increaseHandler = () => {
+    // sending extra data or payload on action object
+    // it wil sent to reducer function and data can be accessed on action object
+    dispatch({ type: 'increase', value: 20 });
+  };
+
+  const decrementHandler = () => {
+    dispatch({ type: 'decrement' });
+  };
+
+  return (
+    <main className='counter'>
+      <h1>Redux Counter</h1>
+      <div className='value'> {counter}</div>
+      <div>
+        <button onClick={incrementHandler}>Increment</button>
+        <button onClick={increaseHandler}>Increment By 20</button>
+        <button onClick={decrementHandler}>Decrement</button>
+      </div>
+      <button onClick={toggleCounterHandler}>Toggle Counter</button>
+    </main>
+  );
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    increment: () => dispatch({ type: 'increment' }),
-    decrement: () => dispatch({ type: 'decrement' }),
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Counter);
+export default Counter;
