@@ -1,9 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 
 const Counter = () => {
-  // state change refreshed value
-  // setting subscription with state
-  //new changes will be reflected on counter variable
   const counter = useSelector((state) => state.counter);
 
   const dispatch = useDispatch();
@@ -11,7 +8,6 @@ const Counter = () => {
   const toggleCounterHandler = () => {};
 
   const incrementHandler = () => {
-    // dispatching action
     dispatch({ type: 'increment' });
   };
 
