@@ -1,7 +1,7 @@
 const Header = () => {
   return (
     <header className='header'>
-      <h1>Redux Auth</h1>
+      <h1>Redux Toolkit</h1>
       <nav>
         <ul>
           <li>
