@@ -116,7 +116,7 @@ button:active {
 }
 
 .actions button {
-  background-color: transparent;
+  background-color: #973600;
   border: 1px solid white;
   margin-left: 0.5rem;
   padding: 0.15rem 1rem;
