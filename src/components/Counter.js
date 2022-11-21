@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { counterActions } from '../store/index';
+import { counterActions } from '../store/counter';
 
 const Counter = () => {
   const counter = useSelector((state) => state.myCounter.counter);
