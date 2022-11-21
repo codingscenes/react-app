@@ -33,11 +33,15 @@ button:active {
   max-width: 30rem;
   background-color: #31a5ed;
   color: white;
+  box-shadow: rgba(156, 156, 156, 0.25) 0px 54px 55px,
+    rgba(159, 159, 159, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+    rgba(145, 145, 145, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
 
 .cart h2 {
   font-size: 1.25rem;
   margin: 0.5rem 0;
+  color: #000000;
 }
 
 .cart ul {
