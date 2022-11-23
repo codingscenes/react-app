@@ -1,16 +1,22 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { uiActions } from './ui-slice';
+
 const cartSlice = createSlice({
   name: 'cart',
   initialState: {
     items: [],
     totalQuantity: 0,
+    changed: false,
   },
   reducers: {
+    replaceCartData(state, action) {
+      state.items = action.payload.items;
+      state.totalQuantity = action.payload.totalQuantity;
+    },
     addItemToCart(state, action) {
       const newItem = action.payload;
       const existingItem = state.items.find((item) => item.id === newItem.id);
       state.totalQuantity++;
+      state.changed = true;
       if (!existingItem) {
         state.items.push({
           id: newItem.id,
@@ -27,10 +33,8 @@ const cartSlice = createSlice({
 
     removeItemFromCart(state, action) {
       const id = action.payload;
-      // {type: '', payload: 2} ///action.payload
-      // existing - quanity reduce with -1
-      // quanity 1 then remove product
       const existingItem = state.items.find((item) => item.id === id);
+      state.changed = true;
       if (existingItem.quantity === 1) {
         state.items = state.items.filter((item) => item.id !== id);
       } else {
@@ -42,53 +46,6 @@ const cartSlice = createSlice({
     },
   },
 });
-
-export const sendCartData = (cart) => {
-
-  return async (dispatch) => {
-    // async - sideffect
-    dispatch(
-      uiActions.showNotification({
-        status: 'pending',
-        title: 'Sending',
-        message: 'Sending cart data.',
-      })
-    );
-
-    const sendRequest = async () => {
-      const response = await fetch(
-        'https://react-learning-project-6b928-default-rtdb.firebaseio.com/cart.json',
-        {
-          method: 'PUT',
-          body: JSON.stringify(cart),
-        }
-      );
-
-      if (!response.ok) {
-        throw new Error('Failed to send cart data...');
-      }
-    };
-
-    try {
-      await sendRequest();
-      dispatch(
-        uiActions.showNotification({
-          status: 'success',
-          title: 'Success',
-          message: 'Cart data saved.',
-        })
-      );
-    } catch (error) {
-      dispatch(
-        uiActions.showNotification({
-          status: 'error',
-          title: 'Failed',
-          message: 'Something went wrong!',
-        })
-      );
-    }
-  };
-};
 
 export const cartActions = cartSlice.actions;
 export default cartSlice.reducer;
