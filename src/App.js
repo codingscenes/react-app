@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import Cart from './components/Cart/Cart';
 import Layout from './components/Layout/Layout';
 import Products from './components/Shop/Products';
+import Notification from './components/UI/Notification';
 
 let isInitial = true;
 
@@ -37,10 +38,17 @@ function App() {
 
   useSelector((state) => state.cart);
   return (
-    <Layout>
-      {showCart && <Cart />}
-      <Products />
-    </Layout>
+    <div>
+      <Notification
+        status='error'
+        title='Server error'
+        message='There is an error here.'
+      />
+      <Layout>
+        {showCart && <Cart />}
+        <Products />
+      </Layout>
+    </div>
   );
 }
 
