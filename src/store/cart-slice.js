@@ -7,6 +7,10 @@ const cartSlice = createSlice({
     totalQuantity: 0,
   },
   reducers: {
+    replaceCart(state, action) {
+      state.totalQuantity = action.payload.totalQuantity;
+      state.items = action.payload.items;
+    },
     addItemToCart(state, action) {
       const newItem = action.payload;
       const existingItem = state.items.find((item) => item.id === newItem.id);
@@ -18,7 +22,7 @@ const cartSlice = createSlice({
           quantity: 1,
           totalPrice: newItem.price,
           name: newItem.title,
-        }); //thanks to reduxtoolkit
+        });
       } else {
         existingItem.quantity++;
         existingItem.totalPrice = existingItem.totalPrice + newItem.price;
@@ -27,14 +31,10 @@ const cartSlice = createSlice({
 
     removeItemFromCart(state, action) {
       const id = action.payload;
-      // {type: '', payload: 2} ///action.payload
-      // existing - quanity reduce with -1
-      // quanity 1 then remove product
       const existingItem = state.items.find((item) => item.id === id);
       if (existingItem.quantity === 1) {
         state.items = state.items.filter((item) => item.id !== id);
       } else {
-        //deducting single unit price from overall totalprice of product in the list
         existingItem.quantity--;
         existingItem.totalPrice = existingItem.totalPrice - existingItem.price;
       }
