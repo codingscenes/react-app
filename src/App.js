@@ -4,7 +4,7 @@ import Cart from './components/Cart/Cart';
 import Layout from './components/Layout/Layout';
 import Products from './components/Shop/Products';
 import Notification from './components/UI/Notification';
-import { uiActions } from './store/ui-slice';
+import { sendCartData } from './store/cart-slice';
 
 let isInitial = true;
 
@@ -19,44 +19,7 @@ function App() {
       isInitial = false;
       return;
     }
-    const sendCartData = async () => {
-      dispatch(
-        uiActions.showNotification({
-          status: 'pending',
-          title: 'Sending',
-          message: 'Sending cart data.',
-        })
-      );
-      const response = await fetch(
-        'https://react-learning-project-6b928-default-rtdb.firebaseio.com/cart.json',
-        {
-          method: 'PUT',
-          body: JSON.stringify(cart),
-        }
-      );
-
-      if (!response.ok) {
-        throw new Error('Failed to send cart data...');
-      }
-      dispatch(
-        uiActions.showNotification({
-          status: 'success',
-          title: 'Success',
-          message: 'Cart data saved.',
-        })
-      );
-    };
-
-    sendCartData().catch((error) => {
-      console.log('[ERROR]', error.message);
-      dispatch(
-        uiActions.showNotification({
-          status: 'error',
-          title: 'Failed',
-          message: 'Something went wrong!',
-        })
-      );
-    });
+    dispatch(sendCartData(cart));
   }, [cart, dispatch]);
 
   useSelector((state) => state.cart);
