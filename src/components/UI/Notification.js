@@ -1,5 +1,7 @@
+import './Notification.css';
 const Notification = (props) => {
   let statusClasses = '';
+  if (props.status === 'pending') statusClasses = 'pending';
   if (props.status === 'error') statusClasses = 'error';
   if (props.status === 'success') statusClasses = 'success';
 

@@ -38,17 +38,10 @@ function App() {
 
   useSelector((state) => state.cart);
   return (
-    <div>
-      <Notification
-        status='error'
-        title='Server error'
-        message='There is an error here.'
-      />
-      <Layout>
-        {showCart && <Cart />}
-        <Products />
-      </Layout>
-    </div>
+    <Layout>
+      {showCart && <Cart />}
+      <Products />
+    </Layout>
   );
 }
 

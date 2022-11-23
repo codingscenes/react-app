@@ -1,0 +1,44 @@
+.notification {
+  width: 250px;
+  height: 4rem;
+  position: fixed;
+  right: 0px;
+  bottom: 10px;
+  animation: fadeIn 1s 2ms normal;
+}
+.notification div {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  width: inherit;
+  background-color: #ffffff;
+  padding: 0.5rem 3%;
+  color: rgb(0, 0, 0);
+  border: 1px solid #ccc;
+}
+
+.notification h2,
+.notification p {
+  font-size: 1rem;
+  margin: 0;
+}
+
+.pending {
+  background-color: #f79e03;
+}
+.error {
+  background-color: #ee0000;
+}
+
+.success {
+  background-color: #04ea45;
+}
+
+@keyframes fadeIn {
+  from {
+    right: -200px;
+  }
+  to {
+    right: 0px;
+  }
+}
