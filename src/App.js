@@ -1,7 +1,7 @@
 function App() {
   return (
     <div>
-      <h2>Let's get started!</h2>
+      <h2>Ready for React Router?</h2>
     </div>
   );
 }
