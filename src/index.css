@@ -10,5 +10,16 @@ html {
 
 body {
   margin: 0;
-  background-color: #ebebeb;
+  background-color: #e1eaf4;
+}
+main {
+  margin-top: 7rem;
+  text-align: center;
+}
+
+h1,
+h2,
+h3,
+p {
+  color: #022a60;
 }
