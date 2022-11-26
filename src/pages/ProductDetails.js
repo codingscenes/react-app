@@ -6,7 +6,6 @@ const ProductDetails = () => {
   const params = useParams();
 
   const match = useRouteMatch();
-  console.log(match);
 
   const productId = params.productId;
 
