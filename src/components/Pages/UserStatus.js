@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 const UserStatus = (props) => {
-  const [value, setValue] = useState('');
+  const [value, setValue] = useState(props.status);
   return (
     <>
       <h3>{props.username}</h3>
@@ -9,7 +9,7 @@ const UserStatus = (props) => {
         name='status'
         id='status'
         className='form-control'
-        value={value || props.status}
+        value={value}
         onChange={(event) => setValue(event.target.value)}
       >
         <option value='Online'>Online</option>
