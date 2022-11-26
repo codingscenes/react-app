@@ -61,3 +61,7 @@ p {
   padding-bottom: 0.25rem;
   border-bottom: 4px solid #e35dc6;
 }
+
+ul {
+  list-style: none;
+}
