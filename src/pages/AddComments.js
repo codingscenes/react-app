@@ -1,6 +1,9 @@
 const AddComments = () => {
-    
-  const onAddComment = () => {};
+
+    const onAddComment = () => {
+
+     };
+
   return (
     <section>
       <textarea rows={4} cols={4}></textarea>
