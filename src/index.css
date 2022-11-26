@@ -65,3 +65,23 @@ p {
 ul {
   list-style: none;
 }
+
+textarea {
+  width: 30rem;
+  height: 10rem;
+  display: block;
+  margin: 0 auto;
+}
+button {
+  background-color: #06278a;
+  border-color: #0f35a5;
+  color: #fff;
+  border: 0.5rem 2rem;
+  border-radius: 15rem;
+  cursor: pointer;
+  font: inherit;
+  height: 2.5rem;
+  margin-left: 1rem;
+  width: 100px;
+  margin-top: 10px;
+}
