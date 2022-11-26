@@ -1,8 +1,10 @@
 const AddComments = () => {
+    
+  const onAddComment = () => {};
   return (
     <section>
       <textarea rows={4} cols={4}></textarea>
-      <button>Submit</button>
+      <button onClick={onAddComment}>Add</button>
     </section>
   );
 };
