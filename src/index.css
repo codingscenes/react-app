@@ -1,63 +1,40 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap');
-
-* {
-  box-sizing: border-box;
-}
+@import url('https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css');
 
 html {
   font-family: 'Noto Sans', sans-serif;
 }
-
-body {
-  margin: 0;
-  background-color: #e1eaf4;
+.spinner {
+  display: inline-block;
+  width: 80px;
+  height: 80px;
 }
-main {
-  margin-top: 7rem;
-  text-align: center;
+.spinner:after {
+  content: ' ';
+  display: block;
+  width: 64px;
+  height: 64px;
+  margin: 8px;
+  border-radius: 50%;
+  border: 6px solid teal;
+  border-color: teal transparent teal transparent;
+  animation: spinner 1.2s linear infinite;
 }
-
-h1,
-h2,
-h3,
-p {
-  color: #022a60;
+@keyframes spinner {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
-.header {
-  width: 100%;
-  height: 5rem;
-  background-color: #77005d;
-  padding: 0 10%;
-}
-
-.header nav {
-  height: 100%;
-}
-
-.header ul {
-  height: 100%;
-  list-style: none;
-  display: flex;
-  padding: 0;
-  margin: 0;
-  align-items: center;
-  justify-content: center;
+.main {
+  margin: 3rem auto;
+  width: 90%;
+  max-width: 40rem;
 }
 
-.header li {
-  margin: 0 1rem;
-  width: 5rem;
-}
-
-.header a {
-  color: white;
-  text-decoration: none;
-}
-
-.header a:hover,
-.header a:active,
-.header a.active {
-  color: #e35dc6;
-  padding-bottom: 0.25rem;
-  border-bottom: 4px solid #e35dc6;
+nav {
+  width: 35%;
+  margin: 0 auto;
 }

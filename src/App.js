@@ -1,8 +1,27 @@
+import { Redirect, Route, Switch } from 'react-router-dom';
+import Layout from './components/layout/Layout';
+import Contact from './components/Pages/Contact';
+import Home from './components/Pages/Home';
+import Users from './components/Pages/Users';
+
 function App() {
   return (
-    <div>
-      <h2>Let's get started!</h2>
-    </div>
+    <Layout>
+      <Switch>
+        <Route path='/' exact>
+          <Redirect to='/home' />
+        </Route>
+        <Route path='/home'>
+          <Home />
+        </Route>
+        <Route path='/users'>
+          <Users />
+        </Route>
+        <Route path='/contact'>
+          <Contact />
+        </Route>
+      </Switch>
+    </Layout>
   );
 }
 
