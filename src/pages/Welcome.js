@@ -1,10 +1,11 @@
-import { Route } from 'react-router-dom';
+import { Route, useRouteMatch } from 'react-router-dom';
 
 const Welcome = () => {
+  const match = useRouteMatch();
   return (
     <section>
       <h1>Welcome here!</h1>
-      <Route path='/welcome/:user'>
+      <Route path={`${match.path}/:user`}>
         <p>Welcome new user! This is waste of your time.</p>
       </Route>
     </section>

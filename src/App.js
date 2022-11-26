@@ -32,8 +32,3 @@ function App() {
 }
 
 export default App;
-// xyz.com/product-details/p1 => p1 product details
-// xyz.com/product-details/p2 => p2 product details
-// xyz.com/product-details/:<any value> => p2 product details
-
-//
