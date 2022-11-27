@@ -1,6 +1,4 @@
-import { Link, Route, useParams, useRouteMatch } from 'react-router-dom';
-import AddComments from './AddComments';
-import ProductComments from './ProductComments';
+import { useHistory, useLocation, useParams } from 'react-router-dom';
 
 const dummyDetails = {
   p1: ['APPLE', 'HUAWEI', 'XIAOMI', 'OPPO', 'LENOVO', 'LG', 'NOKIA'],
@@ -12,7 +10,14 @@ const ProductDetails = () => {
 
   const productId = params.productId;
 
-  let isSortingAsc = true;
+  const history = useHistory();
+
+  const location = useLocation();
+  console.log(location);
+
+  const queryParams = new URLSearchParams(location.search);
+
+  const isSortingAsc = queryParams.get('sort') === 'asc';
 
   const sortAscFn = (a, b) => a.localeCompare(b);
 
@@ -22,11 +27,17 @@ const ProductDetails = () => {
     isSortingAsc ? sortAscFn : sortDescFn
   );
 
-  const changeSortingHandler = () => { };
-  
+  const changeSortingHandler = () => {
+    history.push(
+      `/products/${productId}?sort=${isSortingAsc ? 'desc' : 'asc'}`
+    );
+  };
+
   return (
     <div className='details'>
-      <button onClick={changeSortingHandler}>Sort Ascending</button>
+      <button onClick={changeSortingHandler}>
+        Sort {isSortingAsc ? 'Descending' : 'Ascending'}
+      </button>
       <h2>This is product details.</h2>
       <ul>
         {list.map((item) => (
