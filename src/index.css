@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.5.0/semantic.min.css');
 
 * {
   box-sizing: border-box;
@@ -66,12 +67,6 @@ ul {
   list-style: none;
 }
 
-textarea {
-  width: 30rem;
-  height: 10rem;
-  display: block;
-  margin: 0 auto;
-}
 button {
   background-color: #8a067b;
   border-color: #740066;
@@ -126,4 +121,9 @@ button {
   100% {
     opacity: 1;
   }
+}
+
+.form {
+  width: 35rem;
+  margin: 0 auto;
 }

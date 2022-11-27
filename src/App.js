@@ -1,5 +1,6 @@
 import { Redirect, Route, Switch } from 'react-router-dom';
 import MainHeader from './components/MainHeader';
+import Contact from './pages/Contact';
 import ProductDetails from './pages/ProductDetails';
 import Products from './pages/Products';
 import Welcome from './pages/Welcome';
@@ -24,6 +25,9 @@ function App() {
 
           <Route path='/products/:productId'>
             <ProductDetails />
+          </Route>
+          <Route path='/contact'>
+            <Contact />
           </Route>
         </Switch>
       </main>
