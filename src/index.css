@@ -73,8 +73,8 @@ textarea {
   margin: 0 auto;
 }
 button {
-  background-color: #06278a;
-  border-color: #0f35a5;
+  background-color: #8a067b;
+  border-color: #740066;
   color: #fff;
   border: 0.5rem 2rem;
   border-radius: 15rem;
@@ -82,6 +82,48 @@ button {
   font: inherit;
   height: 2.5rem;
   margin-left: 1rem;
-  width: 100px;
+  width: auto;
   margin-top: 10px;
+}
+
+.details li {
+  border: 1px solid #ccc;
+  width: 200px;
+  background: beige;
+  border-radius: 5px;
+  box-shadow: 1px 1px 1px #ccc;
+  padding: 0.2rem;
+  margin-bottom: 0.2rem;
+  margin: 0 auto;
+  animation: fadeIn ease 2s;
+  -webkit-animation: fadeIn ease 2s;
+  -moz-animation: fadeIn ease 2s;
+  -o-animation: fadeIn ease 2s;
+  -ms-animation: fadeIn ease 2s;
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@-moz-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
