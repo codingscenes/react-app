@@ -1,9 +1,7 @@
-import classes from './StartingPageContent.module.css';
-
 const StartingPageContent = () => {
   return (
-    <section className={classes.starting}>
-      <h1>Welcome on Board!</h1>
+    <section className='starting'>
+      <h1>Welcome to React Auth!</h1>
     </section>
   );
 };
