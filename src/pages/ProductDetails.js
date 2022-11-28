@@ -13,7 +13,6 @@ const ProductDetails = () => {
   const history = useHistory();
 
   const location = useLocation();
-  console.log(location);
 
   const queryParams = new URLSearchParams(location.search);
 

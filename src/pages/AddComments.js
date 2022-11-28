@@ -3,8 +3,6 @@ const AddComments = () => {
   const history = useHistory();
   const params = useParams();
 
-  console.log(history);
-  console.log(params);
   const onAddComment = () => {
     // history.goBack();
     history.replace(`/products/${params.productId}`);

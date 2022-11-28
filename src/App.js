@@ -1,35 +1,41 @@
 import { Redirect, Route, Switch } from 'react-router-dom';
 import MainHeader from './components/MainHeader';
-import Contact from './pages/Contact';
+
 import ProductDetails from './pages/ProductDetails';
-import Products from './pages/Products';
 import Welcome from './pages/Welcome';
+
+import React, { Suspense } from 'react';
+
+const Products = React.lazy(() => import('./pages/Products'));
+const Contact = React.lazy(() => import('./pages/Contact'));
 
 function App() {
   return (
     <div>
       <MainHeader />
       <main>
-        <Switch>
-          <Route path='/' exact>
-            <Redirect to='/welcome' />
-          </Route>
+        <Suspense fallback={<p>Please wait. Page is loading</p>}>
+          <Switch>
+            <Route path='/' exact>
+              <Redirect to='/welcome' />
+            </Route>
 
-          <Route path='/welcome'>
-            <Welcome />
-          </Route>
+            <Route path='/welcome'>
+              <Welcome />
+            </Route>
 
-          <Route path='/products' exact>
-            <Products />
-          </Route>
+            <Route path='/products' exact>
+              <Products />
+            </Route>
 
-          <Route path='/products/:productId'>
-            <ProductDetails />
-          </Route>
-          <Route path='/contact'>
-            <Contact />
-          </Route>
-        </Switch>
+            <Route path='/products/:productId'>
+              <ProductDetails />
+            </Route>
+            <Route path='/contact'>
+              <Contact />
+            </Route>
+          </Switch>
+        </Suspense>
       </main>
     </div>
   );
