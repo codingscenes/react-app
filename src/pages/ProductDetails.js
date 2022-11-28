@@ -13,7 +13,6 @@ const ProductDetails = () => {
   const history = useHistory();
 
   const location = useLocation();
-  console.log(location);
 
   const queryParams = new URLSearchParams(location.search);
 
@@ -23,9 +22,14 @@ const ProductDetails = () => {
 
   const sortDescFn = (a, b) => b.localeCompare(a);
 
-  const list = dummyDetails[productId].sort(
-    isSortingAsc ? sortAscFn : sortDescFn
-  );
+  let productListing = <p>No product found!</p>;
+
+  if (productId in dummyDetails) {
+    const list = dummyDetails[productId].sort(
+      isSortingAsc ? sortAscFn : sortDescFn
+    );
+    productListing = list.map((item) => <li key={item}>{item}</li>);
+  }
 
   const changeSortingHandler = () => {
     history.push(
@@ -39,11 +43,7 @@ const ProductDetails = () => {
         Sort {isSortingAsc ? 'Descending' : 'Ascending'}
       </button>
       <h2>This is product details.</h2>
-      <ul>
-        {list.map((item) => (
-          <li key={item}>{item}</li>
-        ))}
-      </ul>
+      <ul>{productListing}</ul>
     </div>
   );
 };

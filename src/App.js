@@ -1,6 +1,7 @@
 import { Redirect, Route, Switch } from 'react-router-dom';
 import MainHeader from './components/MainHeader';
 import Contact from './pages/Contact';
+import NotFound from './pages/NotFound';
 import ProductDetails from './pages/ProductDetails';
 import Products from './pages/Products';
 import Welcome from './pages/Welcome';
@@ -28,6 +29,9 @@ function App() {
           </Route>
           <Route path='/contact'>
             <Contact />
+          </Route>
+          <Route path='*'>
+            <NotFound />
           </Route>
         </Switch>
       </main>
