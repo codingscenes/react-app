@@ -1,9 +1,13 @@
-import { useRef, useState } from 'react';
+import { useContext, useRef, useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import AuthContext from '../../store/auth-context';
 
 const AuthForm = () => {
   const [isLogin, setIsLogin] = useState(true);
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const authCtx = useContext(AuthContext);
+  const history = useHistory();
 
   const emailInputRef = useRef('');
   const passwordInputRef = useRef('');
@@ -52,11 +56,20 @@ const AuthForm = () => {
       url =
         'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyBN29U0If0bHmVTqtA-9V5zpDMZ5x2IeVM';
     }
+
     sendData(url, enteredEmail, enteredPassword)
       .then((result) => {
         console.log('result', result);
+        //firebase secons * 1000 => milliscond in one hour
+        // currentTime in millescond + firebaes time in millisecond
+        // overall convert into date object
+        const expirationTime = new Date(
+          new Date().getTime() + +result.expiresIn * 1000
+        );
+        authCtx.login(result.idToken, expirationTime.toISOString());
         emailInputRef.current.value = '';
         passwordInputRef.current.value = '';
+        history.replace('/');
       })
       .catch((error) => {
         setError(error.message);
