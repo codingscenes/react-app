@@ -1,4 +1,5 @@
 const ProductItem = (props) => {
+  const toggleHandler = () => {};
   return (
     <div className='item'>
       <i className='ui coffee icon icon-item ' />
@@ -7,10 +8,11 @@ const ProductItem = (props) => {
         <div className='description'>{props.description}</div>
       </div>
       <button
-        className='ui basic button favorite-btn'
-        onClick={props.clikedItem}
+        className={`ui  button favorite-btn ${props.isFavorite && 'green'}`}
+        onClick={toggleHandler}
       >
-        <i className='icon heart'></i> Favorite
+        <i className='icon heart'></i>{' '}
+        {props.isFavorite ? 'Unfavorite' : 'Favorite'}
       </button>
     </div>
   );
