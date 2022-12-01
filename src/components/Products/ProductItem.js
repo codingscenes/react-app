@@ -4,6 +4,7 @@ import { useStore } from '../../hooks-store/store';
 const ProductItem = React.memo((props) => {
   const dispatch = useStore(false)[1];
   console.log('Product Item called!');
+  
   const toggleHandler = () => {
     dispatch('TOGGLE_FAV', props.id);
   };
