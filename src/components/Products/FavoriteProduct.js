@@ -1,22 +1,12 @@
 import Layout from '../Layout/Layout';
 import ProductItem from './ProductItem';
-const PRODUCT_DATA = [
-  {
-    id: 'p1',
-    title: 'Black Tea',
-    description: 'De-stree yourself with yummy black tea',
-    isFavorite: true,
-  },
-  {
-    id: 'p2',
-    title: 'Black Coffee',
-    description: 'Rest yourself with yummy black Coffee',
-    isFavorite: true,
-  },
-];
+
+import { useStore } from '../../hooks-store/store';
+
 const FavoriteProduct = () => {
-  const clickedItemHandler = () => {};
-  const filteredProduct = PRODUCT_DATA.filter((p) => p.isFavorite);
+  const state = useStore()[0];
+
+  const filteredProduct = state.products.filter((p) => p.isFavorite);
   return (
     <Layout>
       <div className='ui segment'>

@@ -4,6 +4,7 @@ import HomePage from './pages/HomePage';
 import ProductPage from './pages/ProductPage';
 
 function App() {
+
   return (
     <Switch>
       <Route path='/' exact>
