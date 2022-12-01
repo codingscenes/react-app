@@ -13,7 +13,7 @@ export const useStore = (shouldListen = true) => {
     const newState = actions[actionIdentifier](globalState, payload);
     // store should be one single store
     globalState = { ...globalState, ...newState };
-    console.log(listeners);
+    
     for (const listener of listeners) {
       listener(globalState); // re-rendering/JSX refresh
     }

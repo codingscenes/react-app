@@ -5,7 +5,6 @@ import ProductItem from './ProductItem';
 const Products = () => {
   const state = useStore()[0];
 
-  const clickedItemHandler = () => {};
   return (
     <Layout>
       <div className='ui segment'>
@@ -17,7 +16,6 @@ const Products = () => {
               title={item.title}
               description={item.description}
               isFavorite={item.isFavorite}
-              clikedItem={clickedItemHandler}
             />
           ))}
         </div>
