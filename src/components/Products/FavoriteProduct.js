@@ -1,22 +1,10 @@
+import { useSelector } from 'react-redux';
 import Layout from '../Layout/Layout';
 import ProductItem from './ProductItem';
-const PRODUCT_DATA = [
-  {
-    id: 'p1',
-    title: 'Black Tea',
-    description: 'De-stree yourself with yummy black tea',
-    isFavorite: true,
-  },
-  {
-    id: 'p2',
-    title: 'Black Coffee',
-    description: 'Rest yourself with yummy black Coffee',
-    isFavorite: true,
-  },
-];
+
 const FavoriteProduct = () => {
-  const clickedItemHandler = () => {};
-  const filteredProduct = PRODUCT_DATA.filter((p) => p.isFavorite);
+  const products = useSelector((state) => state.teaShop.products);
+  const filteredProduct = products.filter((p) => p.isFavorite);
   return (
     <Layout>
       <div className='ui segment'>

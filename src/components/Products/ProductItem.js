@@ -1,5 +1,12 @@
+import { useDispatch } from 'react-redux';
+import { toggleFav } from '../../redux-store/actions/product';
 const ProductItem = (props) => {
-  const toggleHandler = () => {};
+  const dispatch = useDispatch();
+
+  const toggleHandler = () => {
+    dispatch(toggleFav(props.id));
+  };
+
   return (
     <div className='item'>
       <i className='ui coffee icon icon-item ' />
