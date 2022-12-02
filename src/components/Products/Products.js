@@ -1,9 +1,11 @@
+import { useContext } from 'react';
 import { useSelector } from 'react-redux';
+import { ProductContext } from '../../store-context/product-context';
 import Layout from '../Layout/Layout';
 import ProductItem from './ProductItem';
-
 const Products = () => {
-  const products = useSelector((state) => state.teaShop.products);
+  // const products = useSelector((state) => state.teaShop.products);
+  const products = useContext(ProductContext).products;
 
   return (
     <Layout>

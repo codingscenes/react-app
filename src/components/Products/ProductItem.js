@@ -1,10 +1,14 @@
+import { useContext } from 'react';
 import { useDispatch } from 'react-redux';
 import { toggleFav } from '../../redux-store/actions/product';
+import { ProductContext } from './../../store-context/product-context';
+
 const ProductItem = (props) => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
+  const toggleFav = useContext(ProductContext).toggleFav;
 
   const toggleHandler = () => {
-    dispatch(toggleFav(props.id));
+    toggleFav(props.id);
   };
 
   return (
