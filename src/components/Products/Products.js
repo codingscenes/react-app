@@ -2,16 +2,18 @@ import { useContext } from 'react';
 import { useSelector } from 'react-redux';
 import { ProductContext } from '../../store-context/product-context';
 import Layout from '../Layout/Layout';
+import { useStore } from './../../hook-store/store';
 import ProductItem from './ProductItem';
+
 const Products = () => {
   // const products = useSelector((state) => state.teaShop.products);
-  const products = useContext(ProductContext).products;
+  const state = useStore()[0];
 
   return (
     <Layout>
       <div className='ui segment'>
         <div className='ui list'>
-          {products.map((item) => (
+          {state.products.map((item) => (
             <ProductItem
               key={item.id}
               id={item.id}

@@ -1,13 +1,15 @@
 import { useContext } from 'react';
 import { useSelector } from 'react-redux';
 import Layout from '../Layout/Layout';
+import { useStore } from './../../hook-store/store';
 import { ProductContext } from './../../store-context/product-context';
 import ProductItem from './ProductItem';
 
 const FavoriteProduct = () => {
   // const products = useSelector((state) => state.teaShop.products);
-  const products = useContext(ProductContext).products;
-  const filteredProduct = products.filter((p) => p.isFavorite);
+  const state = useStore()[0];
+
+  const filteredProduct = state.products.filter((p) => p.isFavorite);
   return (
     <Layout>
       <div className='ui segment'>

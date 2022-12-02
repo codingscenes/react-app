@@ -1,14 +1,14 @@
-import { useContext } from 'react';
+import React, { useContext } from 'react';
 import { useDispatch } from 'react-redux';
 import { toggleFav } from '../../redux-store/actions/product';
+import { useStore } from './../../hook-store/store';
 import { ProductContext } from './../../store-context/product-context';
 
-const ProductItem = (props) => {
-  // const dispatch = useDispatch();
-  const toggleFav = useContext(ProductContext).toggleFav;
-
+const ProductItem = React.memo((props) => {
+  const dispatch = useStore(false)[1];
+  console.log('Rendering product item');
   const toggleHandler = () => {
-    toggleFav(props.id);
+    dispatch('TOGGLE_FAV', props.id);
   };
 
   return (
@@ -27,6 +27,6 @@ const ProductItem = (props) => {
       </button>
     </div>
   );
-};
+});
 
 export default ProductItem;

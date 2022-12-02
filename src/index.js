@@ -7,12 +7,14 @@ import './index.css';
 import store from './redux-store/store';
 import ProductProvider from './store-context/product-context';
 
+import configureStore from './hook-store/product-store';
+
+configureStore();
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
-  <ProductProvider>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
-  </ProductProvider>
+  <BrowserRouter>
+    <App />
+  </BrowserRouter>
 );
