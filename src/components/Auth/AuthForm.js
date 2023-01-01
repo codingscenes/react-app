@@ -51,10 +51,10 @@ const AuthForm = () => {
     let url;
     if (isLogin) {
       url =
-        'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyBN29U0If0bHmVTqtA-9V5zpDMZ5x2IeVM';
+        'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=[Your Key]';
     } else {
       url =
-        'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyBN29U0If0bHmVTqtA-9V5zpDMZ5x2IeVM';
+        'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=[Your Key]';
     }
 
     sendData(url, enteredEmail, enteredPassword)
