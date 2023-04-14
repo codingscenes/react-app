@@ -1,13 +1,15 @@
 import React from 'react';
-import withAuthentication from './withAuthentication ';
+import { withState } from './withState';
 
-function App() {
+function App({ count, increment, decrement }) {
   return (
     <div>
-      <h1>Hello World!</h1>
+      <h2>Counter: {count}</h2>
+      <button onClick={increment}>Increment</button>
+      <button onClick={decrement}>Decrement</button>
     </div>
   );
 }
 
-export default withAuthentication(App);
+export default withState(App);
 
