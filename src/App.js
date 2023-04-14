@@ -1,4 +1,6 @@
 import React from 'react';
+import withAuthentication from './withAuthentication ';
+
 function App() {
   return (
     <div>
@@ -7,4 +9,5 @@ function App() {
   );
 }
 
-export default App;
+export default withAuthentication(App);
+
