@@ -1,16 +1,8 @@
 import React, { useState } from 'react';
 
-function App() {
-  const [count, setCount] = useState(0);
+import withState from './withState';
 
-  const increment = () => {
-    setCount(prev => prev + 1);
-  };
-
-  const decrement = () => {
-    setCount(prev => prev - 1);
-  };
-
+function App({ count, increment, decrement }) {
   return (
     <div>
       <h2>Counter: {count}</h2>
@@ -20,5 +12,5 @@ function App() {
   );
 }
 
-export default App;
+export default withState(App)
 
