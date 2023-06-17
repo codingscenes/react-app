@@ -11,8 +11,9 @@ const About = () => {
     }, 1000);
 
     return () => {
+      console.log('Cleaning up useEffect!');
       clearInterval(timer);
-    }
+    };
   }, []);
 
   console.log('component rendered!');
