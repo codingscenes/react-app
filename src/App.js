@@ -33,7 +33,7 @@ function App() {
       <h3>Photos from Nokia 1100</h3>
       {imageGallery.map((image) => (
         // <img className='image' src={image.url} key={image.id} />
-        <LazyImage key={image.id} id ={image.id} url={image.url} />
+        <LazyImage key={image.id} id={image.id} url={image.url} />
       ))}
     </div>
   );
