@@ -11,9 +11,12 @@ const appRouter = createBrowserRouter([
     errorElement: <ErrorPage />,
     element: <RootLayout />,
     children: [
-      { path: '/', element: <Home /> },
-      { path: '/users', element: <UsersPage /> },
-      { path: '/users/:userId', element: <UserDetailPage /> },
+      { index: true, element: <Home /> },
+      {
+        path: 'users',
+        element: <UsersPage />,
+        children: [{ path: ':userId', element: <UserDetailPage /> }],
+      },
     ],
   },
 ]);

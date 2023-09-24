@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, Outlet } from 'react-router-dom';
 
 const USERS = [
   {
@@ -27,6 +27,10 @@ const UsersPage = () => {
             </li>
           ))}
         </ul>
+      </div>
+
+      <div>
+        <Outlet />
       </div>
     </div>
   );
