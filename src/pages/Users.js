@@ -1,36 +1,16 @@
-import { Link, Outlet } from 'react-router-dom';
-
-const USERS = [
-  {
-    id: 1,
-    name: 'Rohit',
-  },
-  {
-    id: 2,
-    name: 'Mohit',
-  },
-  {
-    id: 3,
-    name: 'Rolly',
-  },
-];
-
+const dpUrl = 'https://api.dicebear.com/7.x/adventurer/';
 const UsersPage = () => {
   return (
-    <div>
-      <h1>Users</h1>
-      <div className='users'>
-        <ul>
-          {USERS.map((user) => (
-            <li key={user.id}>
-              <Link to={`/users/${user.id}`}>{user.name}</Link>
-            </li>
-          ))}
-        </ul>
-      </div>
-
-      <div>
-        <Outlet />
+    <div className='container mt-5'>
+      <div className='row'>
+        <div className='col'>
+          <div className='card' style={{ width: 200 }}>
+            <img src={`${dpUrl}svg?seed=Abby`} className='card-img-top' alt='...' />
+            <div className='card-body mx-auto'>
+              <h5 className='card-title'>Rohit Sharma</h5>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

@@ -27,3 +27,15 @@ li a:hover {
   color: #fff;
   background-color: #070707;
 } */
+
+.nav-bg-color {
+  background-color: #e3f2fd;
+}
+
+.navbar-brand,
+.collapse.navbar-collapse,
+.navbar {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  font-size: small;
+}

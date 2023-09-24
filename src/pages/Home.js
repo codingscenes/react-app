@@ -1,18 +1,13 @@
-import { Link, useNavigate } from 'react-router-dom';
-
 const HomePage = () => {
-  const navigate = useNavigate();
-
-  const loginHandler = () => {
-    navigate('/users', { replace: true});
-  };
-
   return (
-    <div>
-      <h1>HomePage</h1>
-      <Link to='/users'>Users</Link>
-      <hr />
-      <button onClick={loginHandler}>Login</button>
+    <div className='container'>
+      <div className='row'>
+        <div className='col'>
+          <div className='mx-auto mt-2'>
+            <h1>Welcome to Homepage!</h1>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
