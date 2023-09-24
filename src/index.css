@@ -5,7 +5,9 @@ body {
   font-family: 'Open Sans';
 }
 
-
+li {
+  list-style: none;
+}
 
 main {
   margin: 2rem auto;
