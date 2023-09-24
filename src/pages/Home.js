@@ -4,13 +4,13 @@ const HomePage = () => {
   const navigate = useNavigate();
 
   const loginHandler = () => {
-    navigate('/users', { replace: true});
+    navigate('/users', { replace: true });
   };
 
   return (
     <div>
       <h1>HomePage</h1>
-      <Link to='/users'>Users</Link>
+      <Link to='users'>Users</Link>
       <hr />
       <button onClick={loginHandler}>Login</button>
     </div>

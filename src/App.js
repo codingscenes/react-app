@@ -5,15 +5,17 @@ import RootLayout from './pages/Root';
 import UserDetailPage from './pages/UserDetail';
 import UsersPage from './pages/Users';
 
+// http://localhost:3000/main/
+
 const appRouter = createBrowserRouter([
   {
-    path: '/',
+    path: '/main',
     errorElement: <ErrorPage />,
     element: <RootLayout />,
     children: [
-      { path: '/', element: <Home /> },
-      { path: '/users', element: <UsersPage /> },
-      { path: '/users/:userId', element: <UserDetailPage /> },
+      { path: '', element: <Home /> },
+      { path: 'users', element: <UsersPage /> },
+      { path: 'users/:userId', element: <UserDetailPage /> },
     ],
   },
 ]);
