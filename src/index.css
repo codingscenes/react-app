@@ -5,19 +5,7 @@ body {
   font-family: 'Open Sans';
 }
 
-.navigation {
-  display: flex;
-  flex-direction: row;
-  align-items: stretch;
-  justify-content: center;
-  padding: 5px;
-  margin: 0;
-  border-bottom: 1px solid #ccc;
-}
-.navigation li {
-  margin-right: 1rem;
-  list-style: none;
-}
+
 
 main {
   margin: 2rem auto;
@@ -29,15 +17,11 @@ a {
   text-decoration: none;
 }
 
-a:hover {
-  text-decoration: underline;
-  color: rgb(163, 0, 171);
-}
-
-.active {
+/* li a.active,
+li a:hover {
   padding: 4px;
-  border: 1px solid #135189;
+  border: 1px solid #070707;
   border-radius: 5px;
   color: #fff;
-  background-color: #004a80;
-}
+  background-color: #070707;
+} */
