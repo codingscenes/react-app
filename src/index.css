@@ -1,8 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Open+Sans:wght@400;700&display=swap');
+
+body {
+  margin: 0;
+  font-family: 'Open Sans';
+}
+
 .navigation {
   display: flex;
   flex-direction: row;
   align-items: stretch;
   justify-content: center;
+  padding: 5px;
+  margin: 0;
+  border-bottom: 1px solid #ccc;
 }
 .navigation li {
   margin-right: 1rem;
@@ -12,4 +22,22 @@
 main {
   margin: 2rem auto;
   text-align: center;
+  height: 100vh;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+  color: rgb(163, 0, 171);
+}
+
+.active {
+  padding: 4px;
+  border: 1px solid #135189;
+  border-radius: 5px;
+  color: #fff;
+  background-color: #004a80;
 }
