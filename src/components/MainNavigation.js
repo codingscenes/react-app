@@ -4,9 +4,9 @@ const MainNavigation = () => {
   return (
     <nav className='navbar navbar-expand navbar-dark bg-dark '>
       <div className='container-fluid'>
-        <a className='navbar-brand' href='#'>
+        <NavLink className='navbar-brand' to='/'>
           DemoApp
-        </a>
+        </NavLink>
 
         <div className='collapse navbar-collapse' id='navbarText'>
           <ul className='navbar-nav me-auto'>
