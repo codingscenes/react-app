@@ -5,7 +5,7 @@ import HomePage from './pages/Home';
 import NewUser from './pages/NewUser';
 import RootLayout from './pages/RootLayout';
 import UserLayout from './pages/UserLayout';
-import UsersPage, { USER_API } from './pages/Users';
+import UsersPage, { loader } from './pages/Users';
 
 const appRouter = createBrowserRouter([
   {
@@ -21,15 +21,7 @@ const appRouter = createBrowserRouter([
           {
             index: true,
             element: <UsersPage />,
-            loader: async () => {
-              const response = await fetch(USER_API);
-              if (!response.ok) {
-                // TODO : handle it later
-              } else {
-                const responseData = await response.json();
-                return responseData;
-              }
-            },
+            loader: loader,
           },
           { path: ':new', element: <NewUser /> },
           { path: ':userId/edit', element: <EditUser /> },
