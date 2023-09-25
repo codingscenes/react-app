@@ -16,7 +16,6 @@ const UsersPage = () => {
         setError('Fetching users failed!');
       } else {
         const responseData = await response.json();
-        console.log(responseData);
         setFetchedUsers(responseData);
       }
       setIsLoading(false);

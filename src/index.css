@@ -15,19 +15,6 @@ main {
   height: 100vh;
 }
 
-a {
-  text-decoration: none;
-}
-
-/* li a.active,
-li a:hover {
-  padding: 4px;
-  border: 1px solid #070707;
-  border-radius: 5px;
-  color: #fff;
-  background-color: #070707;
-} */
-
 .nav-bg-color {
   background-color: #e3f2fd;
 }
@@ -38,4 +25,13 @@ li a:hover {
   padding-top: 0 !important;
   padding-bottom: 0 !important;
   font-size: small;
+}
+
+.card {
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+}
+
+.user-nav {
+  width: 20rem;
+  margin: 2rem auto;
 }
