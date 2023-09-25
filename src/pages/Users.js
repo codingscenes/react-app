@@ -1,16 +1,38 @@
-const dpUrl = 'https://api.dicebear.com/7.x/adventurer/';
+import { useEffect, useState } from 'react';
+import UsersList from '../components/UsersList';
+
+const USER_API = 'https://raw.githubusercontent.com/codingscenes/react-app/11-Data-Fetching-With-Loader/api/users.json';
+
 const UsersPage = () => {
+  const [isLoading, setIsLoading] = useState(false);
+  const [fetchedUsers, setFetchedUsers] = useState();
+  const [error, setError] = useState();
+
+  useEffect(() => {
+    async function fetchUsers() {
+      setIsLoading(true);
+      const response = await fetch(USER_API);
+      if (!response.ok) {
+        setError('Fetching users failed!');
+      } else {
+        const responseData = await response.json();
+        console.log(responseData);
+        setFetchedUsers(responseData);
+      }
+      setIsLoading(false);
+    }
+    fetchUsers();
+  }, []);
   return (
     <div className='container mt-5'>
       <div className='row'>
-        <div className='col'>
-          <div className='card' style={{ width: 200 }}>
-            <img src={`${dpUrl}svg?seed=Abby`} className='card-img-top' alt='...' />
-            <div className='card-body mx-auto'>
-              <h5 className='card-title'>Rohit Sharma</h5>
-            </div>
+        {(isLoading || error) && (
+          <div className='col mx-auto'>
+            {isLoading && <p>Loading...</p>}
+            {error && <p>{error}</p>}
           </div>
-        </div>
+        )}
+        {!isLoading && fetchedUsers && <UsersList users={fetchedUsers} />}
       </div>
     </div>
   );
