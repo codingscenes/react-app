@@ -15,8 +15,8 @@ const MainNavigation = () => {
                 Home
               </NavLink>
             </li>
-            <li className={({ isActive }) => (isActive ? 'nav-item active' : 'nav-item')}>
-              <NavLink to='/users' className='nav-link'>
+            <li className='nav-item'>
+              <NavLink to='/users' className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}>
                 Users
               </NavLink>
             </li>
