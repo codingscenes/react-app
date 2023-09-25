@@ -6,9 +6,7 @@ const cors = require('cors');
 app.use(cors());
 
 app.get('/users', (req, res) => {
-  setTimeout(() => {
-    res.sendFile(path.join(__dirname, 'users.json'));
-  }, 2000);
+  res.sendFile(path.join(__dirname, 'users.json'));
 });
 
 app.listen(8001, () => {
