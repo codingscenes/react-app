@@ -1,8 +1,7 @@
 import { useLoaderData } from 'react-router-dom';
 import UsersList from '../components/UsersList';
 
-export const USER_API =
-  'https://raw.githubusercontent.com/codingscenes/react-app/11-Data-Fetching-With-Loader/api/users.json';
+export const USER_API = 'http://localhost:8001/users';
 
 const UsersPage = () => {
   const users = useLoaderData();
