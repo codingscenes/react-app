@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 import UsersList from '../components/UsersList';
 
-const USER_API = 'https://raw.githubusercontent.com/codingscenes/react-app/11-Data-Fetching-With-Loader/api/users.json';
+export const USER_API =
+  'https://raw.githubusercontent.com/codingscenes/react-app/11-Data-Fetching-With-Loader/api/users.json';
 
 const UsersPage = () => {
   const [isLoading, setIsLoading] = useState(false);
