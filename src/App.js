@@ -26,11 +26,17 @@ const appRouter = createBrowserRouter([
           },
           {
             path: ':userId',
-            element: <UserDetailsPage />,
             loader: userDetailsLoader,
+            id: 'user-details',
+            children: [
+              {
+                index: true,
+                element: <UserDetailsPage />,
+              },
+              { path: 'edit', element: <EditUser /> },
+            ],
           },
           { path: 'new', element: <NewUser /> },
-          { path: ':userId/edit', element: <EditUser /> },
         ],
       },
       ,

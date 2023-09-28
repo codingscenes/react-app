@@ -1,8 +1,8 @@
-import { json, useLoaderData } from 'react-router-dom';
+import { json, useRouteLoaderData } from 'react-router-dom';
 import ShowDetails from '../components/ShowDetails';
 
 const UserDetailsPage = () => {
-  const user = useLoaderData();
+  const user = useRouteLoaderData('user-details');
 
   return <ShowDetails user={user} />;
 };

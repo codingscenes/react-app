@@ -20,15 +20,27 @@ const UserForm = ({ user }) => {
             <form onSubmit={handleSubmit}>
               <div className='form-group'>
                 <label htmlFor='name'>Name</label>
-                <input type='text' className='form-control' id='name' ref={nameRef} />
+                <input type='text' className='form-control' id='name' ref={nameRef} defaultValue={user.name} />
               </div>
               <div className='form-group'>
                 <label htmlFor='skills'>Skills</label>
-                <input type='text' className='form-control' id='skills' ref={skillsRef} />
+                <input
+                  type='text'
+                  className='form-control'
+                  id='skills'
+                  ref={skillsRef}
+                  defaultValue={user.skills.join(',')}
+                />
               </div>
               <div className='form-group'>
                 <label htmlFor='experience'>Experience</label>
-                <input type='text' className='form-control' id='experience' ref={experienceRef} />
+                <input
+                  type='text'
+                  className='form-control'
+                  id='experience'
+                  ref={experienceRef}
+                  defaultValue={user.experience}
+                />
               </div>
               <button type='submit' className='btn btn-success'>
                 Submit

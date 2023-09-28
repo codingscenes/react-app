@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 const ShowDetails = ({ user }) => {
   return (
     <div className='card mx-auto' style={{ width: '18rem' }}>
@@ -34,9 +36,9 @@ const ShowDetails = ({ user }) => {
           </ul>
         </div>
         <div className='user-actions mt-2'>
-          <a href='#' className='btn btn-sm  btn-primary m-1'>
+          <Link to='edit' className='btn btn-sm  btn-primary m-1'>
             Edit
-          </a>
+          </Link>
           <button className='btn btn-sm btn-danger m-1'>Delete</button>
         </div>
       </div>

@@ -1,18 +1,12 @@
+import { useRouteLoaderData } from 'react-router-dom';
+
+import UserForm from '../components/UserForm';
+
 const EditUser = () => {
-  return (
-    <div className='container'>
-      <div className='row'>
-        <div className='col'>
-          <div className='card p-5'>
-            <h2>Edit new user!</h2>
-            <div className='form-group'>
-              <input type='text' className='form-control' placeholder='Enter user name' />
-            </div>
-            <button className='btn btn-dark mt-3'>UPDATE USER</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
+  const data = useRouteLoaderData('user-details');
+
+  console.log('data', data);
+
+  return <UserForm user={data} />;
 };
 export default EditUser;
