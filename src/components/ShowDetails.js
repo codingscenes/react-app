@@ -3,12 +3,14 @@ const ShowDetails = ({ user }) => {
     <div className='card mx-auto' style={{ width: '18rem' }}>
       <img className='card-img-top' src={user.avatar} alt='User avatar' />
       <div className='card-body'>
-        <h5 className='card-title'>
-          {user.name}{' '}
-          <span role='img' aria-label='star'>
-            ⭐
-          </span>
-        </h5>
+        <div className='d-flex justify-content-between'>
+          <h5 className='card-title'>
+            {user.name}{' '}
+            <span role='img' aria-label='star'>
+              ⭐
+            </span>
+          </h5>
+        </div>
         <div className='card-text'>
           <ul className='list-group' style={{ textAlign: 'left' }}>
             <li className='list-group-item'>
@@ -30,6 +32,12 @@ const ShowDetails = ({ user }) => {
               </span>
             </li>
           </ul>
+        </div>
+        <div className='user-actions mt-2'>
+          <a href='#' className='btn btn-sm  btn-primary m-1'>
+            Edit
+          </a>
+          <button className='btn btn-sm btn-danger m-1'>Delete</button>
         </div>
       </div>
     </div>
