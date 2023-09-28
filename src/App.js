@@ -4,6 +4,7 @@ import ErrorPage from './pages/Error';
 import HomePage from './pages/Home';
 import NewUser from './pages/NewUser';
 import RootLayout from './pages/RootLayout';
+import UserDetailsPage, { loader as userDetailsLoader } from './pages/UserDetails';
 import UserLayout from './pages/UserLayout';
 import UsersPage, { loader } from './pages/Users';
 
@@ -23,7 +24,12 @@ const appRouter = createBrowserRouter([
             element: <UsersPage />,
             loader: loader,
           },
-          { path: ':new', element: <NewUser /> },
+          {
+            path: ':userId',
+            element: <UserDetailsPage />,
+            loader: userDetailsLoader,
+          },
+          { path: 'new', element: <NewUser /> },
           { path: ':userId/edit', element: <EditUser /> },
         ],
       },

@@ -10,7 +10,7 @@ app.get('/users', (req, res) => {
   res.sendFile(path.join(__dirname, 'users.json'));
 });
 
-app.get('/user/:id', (req, res) => {
+app.get('/users/:id', (req, res) => {
   const { id } = req.params;
   const user = users.find((user) => user.id === +id);
   if (!user) {
