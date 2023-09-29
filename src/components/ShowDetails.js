@@ -2,11 +2,11 @@ import { Link } from 'react-router-dom';
 
 const ShowDetails = ({ user }) => {
   return (
-    <div className='card mx-auto' style={{ width: '18rem' }}>
-      <img className='card-img-top' src={user.avatar} alt='User avatar' />
+    <div className='card flex-row mx-auto' style={{ width: '35rem' }}>
+      <img style={{ width: '50%' }} src={user.avatar} alt='User avatar' />
       <div className='card-body'>
         <div className='d-flex justify-content-between'>
-          <h5 className='card-title'>
+          <h5 className='card-title p-2'>
             {user.name}{' '}
             <span role='img' aria-label='star'>
               ⭐
