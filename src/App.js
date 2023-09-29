@@ -34,7 +34,7 @@ const appRouter = createBrowserRouter([
                 element: <UserDetailsPage />,
                 action: userDeleteAction,
               },
-              { path: 'edit', element: <EditUser /> },
+              { path: 'edit', element: <EditUser />, action: newUserAction },
             ],
           },
           { path: 'new', element: <NewUser />, action: newUserAction },

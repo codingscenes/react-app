@@ -7,15 +7,20 @@ const NewUser = () => {
 export default NewUser;
 
 export async function action({ request, params }) {
+  const userId = params.userId;
   const data = await request.formData();
-
   const userData = {
     name: data.get('name'),
     skills: data.get('skills'),
     experience: data.get('experience'),
   };
 
-  const response = await fetch('http://localhost:8001/users', {
+  let url = 'http://localhost:8001/users';
+
+  if (userId) {
+    url = `http://localhost:8001/users/${userId}/edit`;
+  }
+  const response = await fetch(url, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
