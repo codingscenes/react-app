@@ -21,7 +21,7 @@ const UserForm = ({ user }) => {
             <Form method='POST'>
               <div className='form-group'>
                 <label htmlFor='name'>Name</label>
-                <input type='text' name='name' className='form-control' id='name' defaultValue={user?.name} />
+                <input type='text' name='name' className='form-control' id='name' defaultValue={user?.name} required />
               </div>
               <div className='form-group'>
                 <label htmlFor='skills'>Skills</label>
@@ -31,6 +31,7 @@ const UserForm = ({ user }) => {
                   className='form-control'
                   id='skills'
                   defaultValue={user?.skills.join(',')}
+                  required
                 />
               </div>
               <div className='form-group'>
@@ -41,6 +42,7 @@ const UserForm = ({ user }) => {
                   className='form-control'
                   id='experience'
                   defaultValue={user?.experience}
+                  required
                 />
               </div>
               <button disabled={isSubmitting} type='submit' className='btn btn-success'>
