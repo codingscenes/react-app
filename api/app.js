@@ -77,6 +77,25 @@ app.post('/users/:id/edit', (req, res) => {
   }
 });
 
+app.delete('/users/:id/delete', (req, res) => {
+  const { id } = req.params;
+  const userIndex = users.findIndex((user) => user.id === +id);
+  if (userIndex === -1) {
+    res.status(404).send('User not found');
+  } else {
+    users.splice(userIndex, 1);
+
+    fs.writeFile('./users.json', JSON.stringify(users), (err) => {
+      if (err) {
+        console.error(err);
+        res.status(500).send('Error writing to file');
+      } else {
+        res.send(`User with id ${id} deleted`);
+      }
+    });
+  }
+});
+
 app.get('/users/:id', (req, res) => {
   const { id } = req.params;
   const user = users.find((user) => user.id === +id);
