@@ -1,6 +1,10 @@
-import { Form } from 'react-router-dom';
+import { Form, useNavigation } from 'react-router-dom';
 
 const UserForm = ({ user }) => {
+  const navigation = useNavigation();
+
+  const isSubmitting = navigation.state === 'submitting';
+
   return (
     <div className='container'>
       <div className='row justify-content-center'>
@@ -31,8 +35,8 @@ const UserForm = ({ user }) => {
                   defaultValue={user?.experience}
                 />
               </div>
-              <button type='submit' className='btn btn-success'>
-                Submit
+              <button disabled={isSubmitting} type='submit' className='btn btn-success'>
+                {isSubmitting ? 'Submitting' : 'Submit'}
               </button>
             </Form>
           </div>
