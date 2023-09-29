@@ -24,7 +24,7 @@ app.get('/users/:id', (req, res) => {
 
 app.post('/users', (req, res) => {
   const { name, experience, skills } = req.body;
-  const newId = users[users.length - 1].id + 1;
+  const newId = Math.floor(Math.random() * 100) + 1;
   const dummyAddress = {
     street: Math.floor(Math.random() * 100) + 1 + ' Oak St',
     city: 'Anytown',

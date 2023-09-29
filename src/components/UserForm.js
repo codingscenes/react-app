@@ -1,34 +1,23 @@
-import { useRef } from 'react';
+import { Form } from 'react-router-dom';
 
 const UserForm = ({ user }) => {
-  const nameRef = useRef('');
-  const skillsRef = useRef('');
-  const experienceRef = useRef('');
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    console.log('Name:', nameRef.current.value);
-    console.log('Skills:', skillsRef.current.value);
-    console.log('Experience:', experienceRef.current.value);
-  };
-
   return (
     <div className='container'>
       <div className='row justify-content-center'>
         <div className='col-md-6'>
           <div className='form-box'>
-            <form onSubmit={handleSubmit}>
+            <Form method='POST'>
               <div className='form-group'>
                 <label htmlFor='name'>Name</label>
-                <input type='text' className='form-control' id='name' ref={nameRef} defaultValue={user?.name} />
+                <input type='text' name='name' className='form-control' id='name' defaultValue={user?.name} />
               </div>
               <div className='form-group'>
                 <label htmlFor='skills'>Skills</label>
                 <input
                   type='text'
+                  name='skills'
                   className='form-control'
                   id='skills'
-                  ref={skillsRef}
                   defaultValue={user?.skills.join(',')}
                 />
               </div>
@@ -36,16 +25,16 @@ const UserForm = ({ user }) => {
                 <label htmlFor='experience'>Experience</label>
                 <input
                   type='text'
+                  name='experience'
                   className='form-control'
                   id='experience'
-                  ref={experienceRef}
                   defaultValue={user?.experience}
                 />
               </div>
               <button type='submit' className='btn btn-success'>
                 Submit
               </button>
-            </form>
+            </Form>
           </div>
         </div>
       </div>

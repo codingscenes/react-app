@@ -2,7 +2,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import EditUser from './pages/EditUser';
 import ErrorPage from './pages/Error';
 import HomePage from './pages/Home';
-import NewUser from './pages/NewUser';
+import NewUser, { action as newUserAction } from './pages/NewUser';
 import RootLayout from './pages/RootLayout';
 import UserDetailsPage, { loader as userDetailsLoader } from './pages/UserDetails';
 import UserLayout from './pages/UserLayout';
@@ -36,7 +36,7 @@ const appRouter = createBrowserRouter([
               { path: 'edit', element: <EditUser /> },
             ],
           },
-          { path: 'new', element: <NewUser /> },
+          { path: 'new', element: <NewUser />, action: newUserAction },
         ],
       },
       ,
