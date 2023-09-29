@@ -1,6 +1,17 @@
-import { Link } from 'react-router-dom';
+import { Form, Link, useSubmit } from 'react-router-dom';
 
 const ShowDetails = ({ user }) => {
+  const submit = useSubmit();
+
+  const deleteHandler = (event) => {
+    event.preventDefault();
+    const canDelete = window.confirm('Do you want to delete?');
+
+    if (canDelete) {
+      // proceed for delete action
+      submit(null, { method: 'POST' });
+    }
+  };
   return (
     <div className='card flex-row mx-auto' style={{ width: '35rem' }}>
       <img style={{ width: '50%' }} src={user.avatar} alt='User avatar' />
@@ -39,7 +50,10 @@ const ShowDetails = ({ user }) => {
           <Link to='edit' className='btn btn-sm  btn-primary m-1'>
             Edit
           </Link>
-          <button className='btn btn-sm btn-danger m-1'>Delete</button>
+
+          <button className='btn btn-sm btn-danger m-1' onClick={deleteHandler}>
+            Delete
+          </button>
         </div>
       </div>
     </div>

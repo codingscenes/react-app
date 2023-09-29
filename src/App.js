@@ -4,7 +4,7 @@ import ErrorPage from './pages/Error';
 import HomePage from './pages/Home';
 import NewUser, { action as newUserAction } from './pages/NewUser';
 import RootLayout from './pages/RootLayout';
-import UserDetailsPage, { loader as userDetailsLoader } from './pages/UserDetails';
+import UserDetailsPage, { action as userDeleteAction, loader as userDetailsLoader } from './pages/UserDetails';
 import UserLayout from './pages/UserLayout';
 import UsersPage, { loader } from './pages/Users';
 
@@ -32,6 +32,7 @@ const appRouter = createBrowserRouter([
               {
                 index: true,
                 element: <UserDetailsPage />,
+                action: userDeleteAction,
               },
               { path: 'edit', element: <EditUser /> },
             ],

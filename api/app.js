@@ -77,7 +77,7 @@ app.post('/users/:id/edit', (req, res) => {
   }
 });
 
-app.delete('/users/:id/delete', (req, res) => {
+app.post('/users/:id/delete', (req, res) => {
   const { id } = req.params;
   const userIndex = users.findIndex((user) => user.id === +id);
   if (userIndex === -1) {

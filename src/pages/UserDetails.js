@@ -1,4 +1,4 @@
-import { json, useRouteLoaderData } from 'react-router-dom';
+import { json, redirect, useRouteLoaderData } from 'react-router-dom';
 import ShowDetails from '../components/ShowDetails';
 
 const UserDetailsPage = () => {
@@ -21,4 +21,21 @@ export async function loader({ request, params }) {
     );
   }
   return response;
+}
+
+export async function action({ params, request }) {
+  const id = params.userId;
+  const response = await fetch(`http://localhost:8001/users/${id}/delete`, {
+    method: request.method,
+  });
+  if (!response.ok) {
+    throw json(
+      { msg: 'Can not find user data' },
+      {
+        status: 500,
+      }
+    );
+  }
+
+  return redirect('/users');
 }
