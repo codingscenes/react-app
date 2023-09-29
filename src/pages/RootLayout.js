@@ -9,7 +9,7 @@ const RootLayout = () => {
     <>
       <MainNavigation />
       <main>
-        {isLoading && <p>Loading page...</p>}
+        {/* {isLoading && <p>Loading page...</p>} */}
         <Outlet />
       </main>
     </>
