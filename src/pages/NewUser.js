@@ -1,10 +1,10 @@
 import { json, redirect } from 'react-router-dom';
 import UserForm from './../components/UserForm';
 
-const NewUser = () => {
+const NewUserPage = () => {
   return <UserForm />;
 };
-export default NewUser;
+export default NewUserPage;
 
 export async function action({ request, params }) {
   const userId = params.userId;

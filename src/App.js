@@ -1,9 +1,9 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import EditUser from './pages/EditUser';
+import EditUserPage from './pages/EditUser';
 import ErrorPage from './pages/Error';
-import GetNofied, { action as userNotifyAction } from './pages/GetNofied';
+import GetNofiedPage, { action as userNotifyAction } from './pages/GetNofied';
 import HomePage from './pages/Home';
-import NewUser, { action as newUserAction } from './pages/NewUser';
+import NewUserPage, { action as newUserAction } from './pages/NewUser';
 import RootLayout from './pages/RootLayout';
 import UserDetailsPage, { action as userDeleteAction, loader as userDetailsLoader } from './pages/UserDetails';
 import UserLayout from './pages/UserLayout';
@@ -35,13 +35,13 @@ const appRouter = createBrowserRouter([
                 element: <UserDetailsPage />,
                 action: userDeleteAction,
               },
-              { path: 'edit', element: <EditUser />, action: newUserAction },
+              { path: 'edit', element: <EditUserPage />, action: newUserAction },
             ],
           },
-          { path: 'new', element: <NewUser />, action: newUserAction },
+          { path: 'new', element: <NewUserPage />, action: newUserAction },
         ],
       },
-      { path: '/get-notified', element: <GetNofied />, action: userNotifyAction },
+      { path: '/get-notified', element: <GetNofiedPage />, action: userNotifyAction },
     ],
   },
 ]);

@@ -1,6 +1,6 @@
 import GetNotifiedForNewUser from '../components/GetNotifiedForNewUser';
 
-const GetNofied = () => {
+const GetNofiedPage = () => {
   return (
     <>
       <h1> Get notified 🔔 when user is added! </h1>
@@ -8,9 +8,10 @@ const GetNofied = () => {
     </>
   );
 };
-export default GetNofied;
+export default GetNofiedPage;
 
 export async function action({ request }) {
+  console.log('loading');
   const data = await request.formData();
   const email = data.get('email');
   // skipping backend request;
