@@ -53,3 +53,29 @@ main {
   background: #000000;
   color: #fff;
 }
+
+.search-input {
+  height: 2rem;
+}
+
+main .notify-form {
+  width: 20rem;
+  margin: auto;
+  margin-top: 5rem;
+}
+
+main .notify-form .btn {
+  margin-top: 1rem;
+  background: #1e1c1c;
+  color: #fff;
+}
+.navbar .notify-form {
+  flex-direction: row !important;
+  align-items: center;
+  width: 15rem;
+}
+.navbar .notify-form .btn {
+  background-color: #1e1c1c;
+  color: #fff;
+  border: 1px solid #ffffff;
+}

@@ -1,6 +1,7 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import EditUser from './pages/EditUser';
 import ErrorPage from './pages/Error';
+import GetNofied from './pages/GetNofied';
 import HomePage from './pages/Home';
 import NewUser, { action as newUserAction } from './pages/NewUser';
 import RootLayout from './pages/RootLayout';
@@ -40,7 +41,7 @@ const appRouter = createBrowserRouter([
           { path: 'new', element: <NewUser />, action: newUserAction },
         ],
       },
-      ,
+      { path: '/get-notified', element: <GetNofied /> },
     ],
   },
 ]);

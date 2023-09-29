@@ -1,5 +1,7 @@
 import { NavLink } from 'react-router-dom';
 
+import GetNotifiedForNewUser from './GetNotifiedForNewUser';
+
 const MainNavigation = () => {
   return (
     <nav className='navbar navbar-expand navbar-dark bg-dark '>
@@ -19,8 +21,14 @@ const MainNavigation = () => {
               <NavLink to='/users' className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}>
                 Users
               </NavLink>
+            </li>{' '}
+            <li className='nav-item'>
+              <NavLink to='/get-notified' className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}>
+                Notify
+              </NavLink>
             </li>
           </ul>
+          <GetNotifiedForNewUser />
         </div>
       </div>
     </nav>
