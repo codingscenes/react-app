@@ -25,6 +25,21 @@ app.get('/users/:id', (req, res) => {
 app.post('/users', (req, res) => {
   const { name, experience, skills } = req.body;
   const newId = Math.floor(Math.random() * 100) + 1;
+  let errors = {};
+  if (!name) {
+    errors.name = 'Name is blank!';
+  }
+  if (!experience) {
+    errors.experience = 'Experience is blank!';
+  }
+  if (!skills) {
+    errors.skills = 'Skills are blank!';
+  }
+
+  if (Object.keys(errors).length > 0) {
+    res.status(422).send({ error: errors });
+    return;
+  }
   const dummyAddress = {
     street: Math.floor(Math.random() * 100) + 1 + ' Oak St',
     city: 'Anytown',

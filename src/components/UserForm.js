@@ -1,7 +1,8 @@
-import { Form, useNavigation } from 'react-router-dom';
+import { Form, useActionData, useNavigation } from 'react-router-dom';
 
 const UserForm = ({ user }) => {
   const navigation = useNavigation();
+  const data = useActionData();
 
   const isSubmitting = navigation.state === 'submitting';
 
@@ -10,6 +11,13 @@ const UserForm = ({ user }) => {
       <div className='row justify-content-center'>
         <div className='col-md-6'>
           <div className='form-box'>
+            {data && data.error && (
+              <ul>
+                {Object.values(data.error).map((err) => (
+                  <li key={err}>{err}</li>
+                ))}
+              </ul>
+            )}
             <Form method='POST'>
               <div className='form-group'>
                 <label htmlFor='name'>Name</label>

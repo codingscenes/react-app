@@ -23,6 +23,9 @@ export async function action({ request, params }) {
     body: JSON.stringify(userData),
   });
 
+  if (response.status === 422) {
+    return response;
+  }
   if (!response.ok) {
     throw json({ msg: 'Can not submit the data!' }, { status: 500 });
   }
