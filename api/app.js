@@ -35,7 +35,7 @@ app.post('/users', (req, res) => {
     id: newId,
     name,
     experience,
-    skills,
+    skills: skills.split(','),
     avatar: `https://randomuser.me/api/portraits/men/${newId}.jpg`,
     address: dummyAddress,
   };
@@ -62,7 +62,7 @@ app.post('/users/:id/edit', (req, res) => {
       ...users[userIndex],
       name,
       experience,
-      skills,
+      skills: skills.split(','),
     };
     users[userIndex] = updatedUser;
 
