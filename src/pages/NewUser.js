@@ -1,4 +1,5 @@
 import { json, redirect } from 'react-router-dom';
+import { getAuthToken } from '../utils/util';
 import UserForm from './../components/UserForm';
 
 const NewUserPage = () => {
@@ -20,10 +21,14 @@ export async function action({ request, params }) {
   if (userId) {
     url = `http://localhost:8001/users/${userId}/edit`;
   }
+
+  const token = getAuthToken();
+
   const response = await fetch(url, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
+      Authorization: 'Bearer ' + token,
     },
     body: JSON.stringify(userData),
   });

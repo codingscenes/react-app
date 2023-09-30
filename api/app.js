@@ -25,7 +25,7 @@ app.get('/users/:id', (req, res) => {
   }
 });
 
-app.post('/users', (req, res) => {
+app.post('/users', verifyToken, (req, res) => {
   const { name, experience, skills } = req.body;
   const newId = Math.floor(Math.random() * 100) + 1;
   let errors = {};
@@ -69,7 +69,7 @@ app.post('/users', (req, res) => {
   });
 });
 
-app.post('/users/:id/edit', (req, res) => {
+app.post('/users/:id/edit', verifyToken, (req, res) => {
   const { id } = req.params;
   const { name, experience, skills } = req.body;
   const userIndex = users.findIndex((user) => user.id === +id);
@@ -95,7 +95,7 @@ app.post('/users/:id/edit', (req, res) => {
   }
 });
 
-app.post('/users/:id/delete', (req, res) => {
+app.post('/users/:id/delete', verifyToken, (req, res) => {
   const { id } = req.params;
   const userIndex = users.findIndex((user) => user.id === +id);
   if (userIndex === -1) {
@@ -137,6 +137,19 @@ app.post('/login', (req, res) => {
     return res.status(400).json({ error });
   }
 
+  // Check if email is valid
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(email)) {
+    error.email = 'Invalid email format';
+    return res.status(400).json({ error });
+  }
+
+  // Check if password is at least 6 characters long
+  if (password.length < 6) {
+    error.password = 'Password must be at least 6 characters long';
+    return res.status(400).json({ error });
+  }
+
   // Check if email and password match
   const user = auth.find((user) => user.email === email && user.password === password);
   if (!user) {
@@ -163,6 +176,18 @@ app.post('/signup', (req, res) => {
     return res.status(400).json({ error });
   }
 
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(email)) {
+    error.email = 'Invalid email format';
+    return res.status(400).json({ error });
+  }
+
+  // Check if password is at least 6 characters long
+  if (password.length < 6) {
+    error.password = 'Password must be at least 6 characters long';
+    return res.status(400).json({ error });
+  }
+
   // Check if email already exists
   const userExists = auth.some((user) => user.email === email);
   if (userExists) {
@@ -185,6 +210,29 @@ app.post('/signup', (req, res) => {
     }
   });
 });
+
+function verifyToken(req, res, next) {
+  if (req.method === 'OPTIONS') {
+    return next();
+  }
+
+  if (!req.headers.authorization) {
+    return res.status(401).json({ error: 'Unauthorized' });
+  }
+  const authHeader = req.headers['authorization'];
+  const token = authHeader && authHeader.split(' ')[1];
+  if (!token) {
+    return res.status(401).json({ error: 'Unauthorized' });
+  }
+
+  jwt.verify(token, SECRET_KEY, (err, user) => {
+    if (err) {
+      return res.status(403).json({ error: 'Forbidden' });
+    }
+    req.user = user;
+    next();
+  });
+}
 
 app.listen(8001, () => {
   console.log('Server listening on port 8001'); // Fix console log message

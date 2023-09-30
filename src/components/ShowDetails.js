@@ -1,7 +1,8 @@
-import { Form, Link, useSubmit } from 'react-router-dom';
+import { Form, Link, useRouteLoaderData, useSubmit } from 'react-router-dom';
 
 const ShowDetails = ({ user }) => {
   const submit = useSubmit();
+  const token = useRouteLoaderData('root');
 
   const deleteHandler = (event) => {
     event.preventDefault();
@@ -46,15 +47,17 @@ const ShowDetails = ({ user }) => {
             </li>
           </ul>
         </div>
-        <div className='user-actions mt-2'>
-          <Link to='edit' className='btn btn-sm  btn-primary m-1'>
-            Edit
-          </Link>
+        {token && (
+          <div className='user-actions mt-2'>
+            <Link to='edit' className='btn btn-sm  btn-primary m-1'>
+              Edit
+            </Link>
 
-          <button className='btn btn-sm btn-danger m-1' onClick={deleteHandler}>
-            Delete
-          </button>
-        </div>
+            <button className='btn btn-sm btn-danger m-1' onClick={deleteHandler}>
+              Delete
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );

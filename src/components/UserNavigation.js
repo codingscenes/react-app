@@ -1,6 +1,8 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, useRouteLoaderData } from 'react-router-dom';
 
 const UserNavigation = () => {
+  const token = useRouteLoaderData('root');
+
   return (
     <ul className='nav nav-pills nav-fill user-nav'>
       <li className='nav-item'>
@@ -14,11 +16,13 @@ const UserNavigation = () => {
         </NavLink>
       </li>
 
-      <li className='nav-item'>
-        <NavLink className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')} to='new'>
-          New User
-        </NavLink>
-      </li>
+      {token && (
+        <li className='nav-item'>
+          <NavLink className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')} to='new'>
+            New User
+          </NavLink>
+        </li>
+      )}
     </ul>
   );
 };

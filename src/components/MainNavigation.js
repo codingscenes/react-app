@@ -1,8 +1,10 @@
-import { NavLink } from 'react-router-dom';
+import { Form, NavLink, useRouteLoaderData } from 'react-router-dom';
 
 import GetNotifiedForNewUser from './GetNotifiedForNewUser';
 
 const MainNavigation = () => {
+  const token = useRouteLoaderData('root');
+
   return (
     <nav className='navbar navbar-expand navbar-dark bg-dark '>
       <div className='container-fluid'>
@@ -27,6 +29,23 @@ const MainNavigation = () => {
                 Notify
               </NavLink>
             </li>
+            {!token && (
+              <li className='nav-item'>
+                <NavLink
+                  to='/auth?mode=login'
+                  className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}
+                >
+                  Auth
+                </NavLink>
+              </li>
+            )}
+            {token && (
+              <li className='nav-item mt-1'>
+                <Form method='POST' action='/logout'>
+                  <button className='btn btn-sm btn-danger'>Logout</button>
+                </Form>
+              </li>
+            )}
           </ul>
           <GetNotifiedForNewUser />
         </div>
