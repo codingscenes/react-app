@@ -3,7 +3,10 @@ const app = express();
 const path = require('path');
 const fs = require('fs');
 const cors = require('cors');
+const jwt = require('jsonwebtoken');
+const auth = require('./auth.json');
 const users = require('./users.json');
+const SECRET_KEY = 'random-string';
 
 app.use(cors());
 app.use(express.json());
@@ -119,6 +122,68 @@ app.get('/users/:id', (req, res) => {
   } else {
     res.send(user);
   }
+});
+
+// Login endpoint
+app.post('/login', (req, res) => {
+  const { email, password } = req.body;
+  let error = {};
+
+  // Check if email and password are provided
+  if (!email || !password) {
+    error.email = 'Email is required';
+    error.password = 'Password is required';
+
+    return res.status(400).json({ error });
+  }
+
+  // Check if email and password match
+  const user = auth.find((user) => user.email === email && user.password === password);
+  if (!user) {
+    error.invalidCreds = 'Invalid email or password';
+    return res.status(401).json({ error });
+  }
+
+  // Generate JWT token
+  const token = jwt.sign({ email }, SECRET_KEY);
+
+  // Return token
+  res.json({ token });
+});
+
+// Signup endpoint
+app.post('/signup', (req, res) => {
+  const { email, password } = req.body;
+  let error = {};
+  // Check if email and password are provided
+  if (!email || !password) {
+    error.email = 'Email is required';
+    error.password = 'Password is required';
+
+    return res.status(400).json({ error });
+  }
+
+  // Check if email already exists
+  const userExists = auth.some((user) => user.email === email);
+  if (userExists) {
+    error.userExists = 'Email already exists';
+    return res.status(409).json({ error: 'Email already exists' });
+  }
+
+  // Add new user to auth.json
+  auth.push({ email, password });
+  fs.writeFile('./auth.json', JSON.stringify(auth), (err) => {
+    if (err) {
+      console.error(err);
+      res.status(500).send('Error writing to file');
+    } else {
+      // Generate JWT token
+      const token = jwt.sign({ email }, SECRET_KEY, { expiresIn: '1h' });
+
+      // Return token
+      res.json({ token });
+    }
+  });
 });
 
 app.listen(8001, () => {
