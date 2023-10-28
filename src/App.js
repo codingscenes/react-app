@@ -1,53 +1,31 @@
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import EditUserPage from './pages/EditUser';
-import ErrorPage from './pages/Error';
-import GetNofiedPage, { action as userNotifyAction } from './pages/GetNofied';
-import HomePage from './pages/Home';
-import NewUserPage, { action as newUserAction } from './pages/NewUser';
-import RootLayout from './pages/RootLayout';
-import UserDetailsPage, { action as userDeleteAction, loader as userDetailsLoader } from './pages/UserDetails';
-import UserLayout from './pages/UserLayout';
-import UsersPage, { loader } from './pages/Users';
+import { Navigate, RouterProvider, createBrowserRouter } from 'react-router-dom';
+import FindNote from './components/FindNote';
+import Layout from './components/Layout';
+import NewNote from './components/NewNote';
+import Note from './components/Note';
+import Notes from './components/Notes';
 
-const appRouter = createBrowserRouter([
+const router = createBrowserRouter([
   {
     path: '/',
-    errorElement: <ErrorPage />,
-    element: <RootLayout />,
+    element: <Navigate to={'/notes'} />,
+  },
+  {
+    path: '/',
+    element: <Layout />,
     children: [
-      { index: true, element: <HomePage /> },
       {
-        path: 'users',
-        element: <UserLayout />,
-        children: [
-          {
-            index: true,
-            element: <UsersPage />,
-            loader: loader,
-          },
-          {
-            path: ':userId',
-            loader: userDetailsLoader,
-            id: 'user-details',
-            children: [
-              {
-                index: true,
-                element: <UserDetailsPage />,
-                action: userDeleteAction,
-              },
-              { path: 'edit', element: <EditUserPage />, action: newUserAction },
-            ],
-          },
-          { path: 'new', element: <NewUserPage />, action: newUserAction },
-        ],
+        path: '/notes',
+        element: <Notes />,
       },
-      { path: '/get-notified', element: <GetNofiedPage />, action: userNotifyAction },
+      { path: '/new-notes', element: <NewNote /> },
+      { path: '/find-notes', element: <FindNote /> },
     ],
   },
 ]);
 
 function App() {
-  return <RouterProvider router={appRouter} />;
+  return <RouterProvider router={router} />;
 }
 
 export default App;

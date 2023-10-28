@@ -11,8 +11,8 @@ const SECRET_KEY = 'random-string';
 app.use(cors());
 app.use(express.json());
 
-app.get('/users', (req, res) => {
-  res.sendFile(path.join(__dirname, 'users.json'));
+app.get('/notes', (req, res) => {
+  res.sendFile(path.join(__dirname, 'notes.json'));
 });
 
 app.get('/users/:id', (req, res) => {
