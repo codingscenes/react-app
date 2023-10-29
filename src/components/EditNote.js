@@ -1,20 +1,24 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import Error from './Error';
+import ErrorBlock from './ErrorBlock';
+import LoadingBlock from './LoadingBlock';
 import NoteForm from './NoteForm';
 
 const EditNote = () => {
   const [data, setData] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
   const params = useParams();
 
   useEffect(() => {
     setError(null);
+    setIsLoading(true);
     fetch(`http://localhost:8001/notes/${params.id}`)
       .then((response) => response.json())
       .then((data) => setData(data))
-      .catch((error) => setError('Something went wrong!'));
+      .catch((error) => setError('Something went wrong!'))
+      .finally(() => setIsLoading(false));
   }, []);
 
   const noteSubmissionHandler = (note) => {
@@ -37,8 +41,9 @@ const EditNote = () => {
   return (
     <div className='new-note-container'>
       <h1>Edit Note!</h1>
-      {error && <Error message={error} />}
-      <NoteForm data={data} onSubmit={noteSubmissionHandler} />
+      {error && <ErrorBlock message={error} />}
+      {isLoading && <LoadingBlock />}
+      {!isLoading && <NoteForm data={data} onSubmit={noteSubmissionHandler} />}
     </div>
   );
 };

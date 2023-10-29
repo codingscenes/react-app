@@ -1,27 +1,34 @@
 import { useEffect, useState } from 'react';
-import Error from './Error';
+import ErrorBlock from './ErrorBlock';
+import LoadingBlock from './LoadingBlock';
 import Note from './Note';
 
 const Notes = () => {
   const [notes, setNotes] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
   useEffect(() => {
     setError('');
+    setIsLoading(true);
     fetch('http://localhost:8001/notes')
       .then((response) => response.json())
-      .then((data) => setNotes(data))
-      .catch((error) => setError('Unable to fetch notes'));
+      .then((data) => {
+        setNotes(data);
+      })
+      .catch((error) => setError('Unable to fetch notes'))
+      .finally(() => setIsLoading(false));
   }, []);
 
   return (
     <div className='notes-container'>
       <h1>All Notes</h1>
       <div className='notes-wrapper'>
+        {isLoading && <LoadingBlock />}
         {notes.map((note, index) => (
           <Note key={index} note={note} />
         ))}
-        {error && <Error message={error} />}
+        {error && <ErrorBlock message={error} />}
       </div>
     </div>
   );

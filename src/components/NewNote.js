@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Error from './Error';
 import NoteForm from './NoteForm';
 
 const NewNote = () => {
