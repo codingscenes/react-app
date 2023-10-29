@@ -1,13 +1,14 @@
-import { useState } from 'react';
+import { useRef } from 'react';
 
-const NoteForm = ({ onSubmit }) => {
-  const [title, setTitle] = useState('');
-  const [description, setDescription] = useState('');
+const NoteForm = ({ onSubmit, data = {} }) => {
+  const titleRef = useRef(null);
+  const descRef = useRef(null);
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const title = titleRef.current.value;
+    const description = descRef.current.value;
     console.log(`Title: ${title}, Description: ${description}`);
-    // Add logic to submit form data to backend or perform other actions
     onSubmit({ title, description });
   };
 
@@ -20,9 +21,9 @@ const NoteForm = ({ onSubmit }) => {
         type='text'
         id='title'
         name='title'
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
         className='note-form__input'
+        defaultValue={data?.title}
+        ref={titleRef}
       />
 
       <label htmlFor='description' className='note-form__label'>
@@ -31,10 +32,10 @@ const NoteForm = ({ onSubmit }) => {
       <textarea
         id='description'
         name='description'
-        value={description}
-        onChange={(e) => setDescription(e.target.value)}
         className='note-form__textarea'
         rows={5}
+        defaultValue={data?.description}
+        ref={descRef}
       />
 
       <button type='submit' className='note-form__button'>

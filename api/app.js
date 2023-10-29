@@ -39,11 +39,11 @@ app.get('/search', (req, res) => {
 
 app.get('/notes/:id', (req, res) => {
   const { id } = req.params;
-  const user = users.find((user) => user.id === +id);
-  if (!user) {
-    res.status(404).send('User not found');
+  const note = notes.find((n) => n.id === +id);
+  if (!note) {
+    res.status(404).send('Note not found');
   } else {
-    res.send(user);
+    res.send(note);
   }
 });
 
@@ -81,7 +81,7 @@ app.post('/notes', (req, res) => {
   });
 });
 
-app.post('/notes/:id/edit', (req, res) => {
+app.put('/notes/:id/edit', (req, res) => {
   const { id } = req.params;
   const { title, description } = req.body;
   const noteIndex = notes.findIndex((user) => user.id === +id);
