@@ -5,7 +5,6 @@ const Header = () => {
     <>
       <header className='header'>
         <div className='header__logo'>
-          <img src='https://via.placeholder.com/50x50' alt='Logo' />
           <h1 className='header__logo-text'>Plain Notes</h1>
         </div>
         <nav>
