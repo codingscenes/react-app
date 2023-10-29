@@ -12,11 +12,14 @@ const Notes = () => {
     setError('');
     setIsLoading(true);
     fetch('http://localhost:8001/notes')
-      .then((response) => response.json())
+      .then((response) => {
+        if (!response.ok) throw new Error('Unable to fetch Notes!');
+        return response.json();
+      })
       .then((data) => {
         setNotes(data);
       })
-      .catch((error) => setError('Unable to fetch notes'))
+      .catch((error) => setError(error.message))
       .finally(() => setIsLoading(false));
   }, []);
 
