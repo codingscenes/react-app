@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-const NoteForm = () => {
+const NoteForm = ({ onSubmit }) => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
 
@@ -8,6 +8,7 @@ const NoteForm = () => {
     e.preventDefault();
     console.log(`Title: ${title}, Description: ${description}`);
     // Add logic to submit form data to backend or perform other actions
+    onSubmit({ title, description });
   };
 
   return (
@@ -18,6 +19,7 @@ const NoteForm = () => {
       <input
         type='text'
         id='title'
+        name='title'
         value={title}
         onChange={(e) => setTitle(e.target.value)}
         className='note-form__input'
@@ -28,6 +30,7 @@ const NoteForm = () => {
       </label>
       <textarea
         id='description'
+        name='description'
         value={description}
         onChange={(e) => setDescription(e.target.value)}
         className='note-form__textarea'

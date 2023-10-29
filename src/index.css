@@ -171,7 +171,7 @@ main .notify-form .btn {
   margin: 20px;
   border-radius: 5px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  width: 50%;
+  width: 70%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -179,15 +179,23 @@ main .notify-form .btn {
 
 .note-content h2 {
   margin-bottom: 10px;
+  text-align: left;
 }
 
 .note-content p {
   margin-bottom: 10px;
+  text-align: left;
 }
 
 .note-footer {
   display: flex;
   justify-content: space-between;
+}
+
+.note-footer p {
+  background: #e5e5e5;
+  padding: 5px;
+  border-radius: 6px;
 }
 
 .edit-button {
@@ -197,6 +205,7 @@ main .notify-form .btn {
   border-radius: 5px;
   border: none;
   width: 70px;
+  height: 35px;
 }
 .note-form {
   display: flex;
@@ -206,6 +215,7 @@ main .notify-form .btn {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   padding: 20px;
   border-radius: 5px;
+  background: rgb(255 255 255 / 80%);
 }
 
 .note-form__label {
@@ -238,4 +248,51 @@ main .notify-form .btn {
 .new-note-container h1 {
   font-family: Quicksand;
   font-weight: 500;
+}
+
+.find-note-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 10rem;
+}
+
+.find-note-container input {
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  width: 50%;
+}
+
+.search-results-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.note-container {
+  border: 1px solid black;
+  padding: 10px;
+  margin: 10px;
+  width: 50%;
+}
+
+.error-container {
+  background-color: rgb(200 30 0 / 80%);
+  padding: 1rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  min-height: 6rem;
+  width: 50%;
+}
+
+.error-message {
+  color: white;
+  margin-top: revert-layer;
+}
+.error {
+  color: rgb(200 30 0 / 80%);
+  padding: 0;
+  margin: 0;
 }
