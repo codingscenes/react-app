@@ -199,6 +199,11 @@ main .notify-form .btn {
   font-size: 0.8rem;
   font-family: Quicksand;
 }
+.note-footer div {
+  display: flex;
+  justify-content: space-between;
+  width: 7rem;
+}
 
 .edit-button {
   background-color: #4caf50;
@@ -209,6 +214,17 @@ main .notify-form .btn {
   width: 50px;
   height: 35px;
 }
+
+.delete-button {
+  background-color: rgb(200 30 0 / 80%);
+  color: white;
+  padding: 5px;
+  border-radius: 5px;
+  border: none;
+  width: 50px;
+  height: 35px;
+}
+
 .note-form {
   display: flex;
   flex-direction: column;
@@ -271,6 +287,7 @@ main .notify-form .btn {
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 70%;
 }
 
 .note-container {

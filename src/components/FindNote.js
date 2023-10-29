@@ -14,7 +14,10 @@ const FindNote = () => {
   useEffect(() => {
     // debounce the API call
     const timeoutId = setTimeout(async () => {
-      if (!searchTerm) return;
+      if (!searchTerm) {
+        setSearchResults([]);
+        return;
+      }
       setError('');
       try {
         const response = await fetch(`http://localhost:8001/search?query=${searchTerm}`);

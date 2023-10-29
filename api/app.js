@@ -106,7 +106,7 @@ app.put('/notes/:id/edit', (req, res) => {
   }
 });
 
-app.post('/notes/:id/delete', (req, res) => {
+app.delete('/notes/:id/delete', (req, res) => {
   const { id } = req.params;
   const noteIndex = notes.findIndex((user) => user.id === +id);
   if (noteIndex === -1) {

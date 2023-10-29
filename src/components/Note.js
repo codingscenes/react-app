@@ -9,6 +9,16 @@ const Note = ({ note }) => {
   const onEdit = () => {
     navigate(`/edit-notes/${note.id}`);
   };
+  const onRemove = async () => {
+    try {
+      await fetch(`http://localhost:8001/notes/${note.id}/delete`, {
+        method: 'DELETE',
+      });
+      navigate('/');
+    } catch (error) {
+      console.error(error);
+    }
+  };
   return (
     <div className='note-card'>
       <div className='note-content'>
@@ -19,9 +29,14 @@ const Note = ({ note }) => {
         <p>
           {date} {time}
         </p>
-        <button className='edit-button' onClick={onEdit}>
-          Edit
-        </button>
+        <div>
+          <button className='edit-button' onClick={onEdit}>
+            Edit
+          </button>
+          <button className='delete-button' onClick={onRemove}>
+            X
+          </button>
+        </div>
       </div>
     </div>
   );
