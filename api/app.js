@@ -71,12 +71,12 @@ app.post('/notes', (req, res) => {
   };
   notes.unshift(note);
 
-  fs.writeFile('./notes.json', JSON.stringify(users), (err) => {
+  fs.writeFile('./notes.json', JSON.stringify(notes), (err) => {
     if (err) {
       console.error(err);
       res.status(500).send('Error writing to file');
     } else {
-      res.status(201).send(newUser);
+      res.status(201).send(note);
     }
   });
 });
