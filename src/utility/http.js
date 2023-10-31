@@ -1,5 +1,5 @@
 export async function fetchNotes() {
-  const response = await fetch('http://localhost:8001/notess');
+  const response = await fetch('http://localhost:8001/notes');
   if (!response.ok) {
     const error = new Error('Error occured while fetching notes!');
     error.code = response.status;
