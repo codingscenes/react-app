@@ -1,49 +1,35 @@
-import { useState } from 'react';
+import { useMutation } from '@tanstack/react-query';
+
 import { useNavigate } from 'react-router-dom';
+import { addNewNote } from '../utility/http';
+import { queryClient } from '../utility/queryClient';
+import ErrorBlock from './ErrorBlock';
 import NoteForm from './NoteForm';
 
 const NewNote = () => {
-  const [error, setError] = useState(null);
   const navigate = useNavigate();
 
+  const { mutate, isPending, isError, error } = useMutation({
+    mutationFn: addNewNote,
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ['notes'],
+        // exact: true
+      });
+      navigate('/');
+    },
+  });
+
   const noteSubmissionHandler = (note) => {
-    setError(null);
-    fetch('http://localhost:8001/notes', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        title: note.title,
-        description: note.description,
-      }),
-    })
-      .then((response) => {
-        if (response.status === 422) return response.json();
-        if (!response.ok) {
-          throw new Error({ msg: 'Can not add new note!' });
-        }
-        return response.json();
-      })
-      .then((data) => {
-        if (data.error) {
-          setError(data.error);
-          return;
-        }
-        navigate('/');
-      })
-      .catch((error) => console.log(error));
+    mutate(note);
   };
   return (
     <div className='new-note-container'>
       <h1>Add Note!</h1>
-      {error &&
-        Object.values(error).map((err) => (
-          <p className='error' key={err}>
-            {err}
-          </p>
-        ))}
+
+      {isError && <ErrorBlock message={error.message} />}
       <NoteForm onSubmit={noteSubmissionHandler} />
+      {isPending && 'Sending data to backend!'}
     </div>
   );
 };

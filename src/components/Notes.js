@@ -7,8 +7,8 @@ import Note from './Note';
 const Notes = () => {
   const { data, isPending, isLoading, isError, error } = useQuery({
     queryKey: ['notes'],
-    queryFn: fetchNotes,
-    // staleTime: 1000 * 5, // 5 sec
+    queryFn: ({ signal }) => fetchNotes({ signal }),
+    staleTime: 1000 * 30, // 10 sec
     // gcTime: 1000,
   });
 
