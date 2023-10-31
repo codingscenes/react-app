@@ -1,51 +1,49 @@
-import { useEffect, useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
+
+import { useState } from 'react';
+import { searchNotes } from '../utility/http';
 import ErrorBlock from './ErrorBlock';
 import LoadingBlock from './LoadingBlock';
 import Note from './Note';
+import { useDebounce } from './useDebounce';
 
 const FindNote = () => {
   const [searchTerm, setSearchTerm] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
-  const [searchResults, setSearchResults] = useState([]);
-  const [error, setError] = useState(null);
+  const debouncedValue = useDebounce(searchTerm, 800);
+  const {
+    data = [],
+    isLoading,
+    isError,
+    error,
+  } = useQuery({
+    queryKey: ['notes', { mySearchTerm: debouncedValue }],
+    queryFn: () => searchNotes(debouncedValue),
+    enabled: !!debouncedValue,
+    staleTime: 1000 * 30,
+  });
 
   const handleSearch = (event) => {
     setSearchTerm(event.target.value);
   };
 
-  useEffect(() => {
-    // debounce the API call
-    const timeoutId = setTimeout(async () => {
-      setSearchResults([]);
-      if (!searchTerm) return;
-      setError('');
-      setIsLoading(true);
-      try {
-        const response = await fetch(`http://localhost:8001/search?query=${searchTerm}`);
-        const data = await response.json();
-        setSearchResults(data);
-      } catch (error) {
-        setError('Something went wrong!');
-      } finally {
-        setIsLoading(false);
-      }
-    }, 500); // wait for 500ms before making the API call
+  let content = 'Type anything to search notes!';
 
-    // clear the timeout on every key press
-    return () => clearTimeout(timeoutId);
-  }, [searchTerm]);
+  if (isLoading) {
+    content = <LoadingBlock />;
+  }
+
+  if (isError) {
+    content = <ErrorBlock message={error.message} />;
+  }
+
+  if (data) {
+    content = data.map((note) => <Note key={note.id} note={note} />);
+  }
 
   return (
     <div className='find-note-container'>
       <input type='text' placeholder='Search notes' value={searchTerm} onChange={handleSearch} />
-      <div className='search-results-container'>
-        {isLoading && !searchResults.length && <LoadingBlock />}
-
-        {searchResults.map((note) => (
-          <Note key={note.id} note={note} />
-        ))}
-        {error && <ErrorBlock message={error} />}
-      </div>
+      <div className='search-results-container'>{content}</div>
     </div>
   );
 };

@@ -8,6 +8,8 @@ const Notes = () => {
   const { data, isPending, isLoading, isError, error } = useQuery({
     queryKey: ['notes'],
     queryFn: fetchNotes,
+    // staleTime: 1000 * 5, // 5 sec
+    // gcTime: 1000,
   });
 
   return (
