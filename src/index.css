@@ -304,6 +304,7 @@ main .notify-form .btn {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   min-height: 6rem;
   width: 50%;
+  margin: 2rem auto;
 }
 
 .error-message {
