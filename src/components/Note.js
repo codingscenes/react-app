@@ -7,7 +7,7 @@ const Note = ({ note }) => {
   const time = dateInstance.toLocaleTimeString('en-US');
 
   const onEdit = () => {
-    navigate(`/edit-notes/${note.id}`);
+    navigate(`/edit-note/${note.id}`);
   };
   const onRemove = async () => {
     try {

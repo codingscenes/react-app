@@ -15,12 +15,12 @@ const Header = () => {
               </NavLink>
             </li>
             <li>
-              <NavLink to='/new-notes' className={({ isActive }) => (isActive ? 'active' : '')}>
+              <NavLink to='/new-note' className={({ isActive }) => (isActive ? 'active' : '')}>
                 New Note
               </NavLink>
             </li>
             <li>
-              <NavLink to='/find-notes' className={({ isActive }) => (isActive ? 'active' : '')}>
+              <NavLink to='/find-note' className={({ isActive }) => (isActive ? 'active' : '')}>
                 Find Notes
               </NavLink>
             </li>

@@ -20,9 +20,9 @@ const router = createBrowserRouter([
         path: '/notes',
         element: <Notes />,
       },
-      { path: '/new-notes', element: <NewNote /> },
-      { path: '/edit-notes/:id', element: <EditNote /> },
-      { path: '/find-notes', element: <FindNote /> },
+      { path: '/new-note', element: <NewNote /> },
+      { path: '/edit-note/:id', element: <EditNote /> },
+      { path: '/find-note', element: <FindNote /> },
     ],
   },
 ]);
