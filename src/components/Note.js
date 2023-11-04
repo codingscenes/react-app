@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Note = ({ note }) => {
   const navigate = useNavigate();
@@ -22,8 +22,10 @@ const Note = ({ note }) => {
   return (
     <div className='note-card'>
       <div className='note-content'>
-        <h2>{note.title}</h2>
-        <p>{note.description}</p>
+        <Link to={`/view-note/${note.id}`}>
+          <h2>{note.title}</h2>
+          <p>{note.description}</p>
+        </Link>
       </div>
       <div className='note-footer'>
         <p>

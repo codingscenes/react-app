@@ -4,9 +4,13 @@ export async function fetchNotes({ signal }) {
 }
 
 export async function searchNotes(searchTerm) {
-  console.log(searchTerm);
   const response = await fetch(`http://localhost:8001/search?query=${searchTerm}`);
 
+  return await handleResponse(response);
+}
+
+export async function fetchNoteById(id) {
+  const response = await fetch(`http://localhost:8001/notes/${id}`);
   return await handleResponse(response);
 }
 

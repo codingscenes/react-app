@@ -154,6 +154,11 @@ main .notify-form .btn {
   margin-top: 5rem;
 }
 
+.notes-container a {
+  text-decoration: none;
+  color: inherit;
+}
+
 .notes-container h1 {
   font-family: Quicksand;
   font-weight: 600;
