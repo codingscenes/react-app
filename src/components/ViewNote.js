@@ -5,12 +5,6 @@ import ErrorBlock from './ErrorBlock';
 import LoadingBlock from './LoadingBlock';
 import Note from './Note';
 
-const dummyNote = {
-  id: 77,
-  title: 'This is after using invalidateQueries',
-  description: 'reading about invalidateQueries',
-  date: '2023-10-31T19:26:27.700Z',
-};
 const ViewNote = () => {
   const params = useParams();
   const { data, isLoading, isError, error } = useQuery({
