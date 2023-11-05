@@ -15,7 +15,8 @@ const ViewNote = () => {
   const params = useParams();
   const { data, isLoading, isError, error } = useQuery({
     queryKey: ['notes', { id: params.id }],
-    queryFn: () => fetchNoteById(params.id),
+    queryFn: ({ signal }) => fetchNoteById({ signal, id: params.id }),
+    staleTime: 10 * 1000, // second
   });
 
   let content = '';

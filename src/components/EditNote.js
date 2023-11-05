@@ -1,49 +1,79 @@
-import { useEffect, useState } from 'react';
+import { useMutation, useQuery } from '@tanstack/react-query';
 import { useNavigate, useParams } from 'react-router-dom';
+import { fetchNoteById, updateNote } from '../utility/http';
+import { queryClient } from './../utility/queryClient';
 import ErrorBlock from './ErrorBlock';
 import LoadingBlock from './LoadingBlock';
 import NoteForm from './NoteForm';
 
 const EditNote = () => {
-  const [data, setData] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
   const navigate = useNavigate();
   const params = useParams();
 
-  useEffect(() => {
-    setError(null);
-    setIsLoading(true);
-    fetch(`http://localhost:8001/notes/${params.id}`)
-      .then((response) => response.json())
-      .then((data) => setData(data))
-      .catch((error) => setError('Something went wrong!'))
-      .finally(() => setIsLoading(false));
-  }, []);
+  const { data, isLoading, isError, error } = useQuery({
+    queryKey: ['notes', { id: params.id }],
+    queryFn: ({ signal }) => fetchNoteById({ signal, id: params.id }),
+  });
+
+  const { mutate } = useMutation({
+    mutationFn: updateNote,
+    // onSuccess: () => {
+    //   queryClient.invalidateQueries({
+    //     queryKey: ['notes', { id: params.id }],
+    //   });
+    //   navigate(`/view-note/${params.id}`);
+    // },
+    onMutate: async (data) => {
+      const note = data.payload;
+      // cancelling query to avoid old server data
+      await queryClient.cancelQueries({
+        queryKey: ['notes', { id: params.id }],
+      });
+      // getting previous data (note)
+      const previousNote = queryClient.getQueryData(['notes', { id: params.id }]);
+      queryClient.setQueryData(['notes', { id: params.id }], note);
+
+      return {
+        previousNote,
+      };
+    },
+    onSuccess: () => {
+      console.log('Note has been updated!');
+    },
+    onError: (error, data, context) => {
+      queryClient.setQueryData(['notes', { id: params.id }], context.previousNote);
+      console.error('Note failed to update!');
+    },
+    onSettled: () => {
+      // query invalidate - UI + bakend => sync
+      queryClient.invalidateQueries({
+        queryKey: ['notes', { id: params.id }],
+      });
+    },
+  });
 
   const noteSubmissionHandler = (note) => {
-    setError(null);
-    fetch(`http://localhost:8001/notes/${params.id}/edit`, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        title: note.title,
-        description: note.description,
-      }),
-    })
-      .then((response) => response.json())
-      .then((data) => navigate('/'))
-      .catch((error) => setError('Something went wrong!'));
+    mutate({ id: params.id, payload: note });
+    navigate(`/view-note/${params.id}`);
   };
 
+  let content = 'Fetching notes...';
+
+  if (isLoading) {
+    content = <LoadingBlock />;
+  }
+
+  if (isError) {
+    content = <ErrorBlock message={error.message} />;
+  }
+
+  if (data) {
+    content = <NoteForm data={data} onSubmit={noteSubmissionHandler} />;
+  }
   return (
     <div className='new-note-container'>
       <h1>Edit Note!</h1>
-      {error && <ErrorBlock message={error} />}
-      {isLoading && <LoadingBlock />}
-      {!isLoading && <NoteForm data={data} onSubmit={noteSubmissionHandler} />}
+      {content}
     </div>
   );
 };

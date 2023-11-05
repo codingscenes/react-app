@@ -8,7 +8,6 @@ const NoteForm = ({ onSubmit, data = {} }) => {
     e.preventDefault();
     const title = titleRef.current.value;
     const description = descRef.current.value;
-    console.log(`Title: ${title}, Description: ${description}`);
     onSubmit({ title, description });
   };
 
