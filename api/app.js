@@ -104,6 +104,18 @@ app.post('/notes', async (req, res) => {
 app.put('/notes/:id/edit', async (req, res) => {
   const { id } = req.params;
   const { title, description } = req.body;
+  let errors = {};
+  if (!title) {
+    errors.title = 'Title is blank!';
+  }
+  if (!description) {
+    errors.description = 'Description is blank!';
+  }
+
+  if (Object.keys(errors).length > 0) {
+    res.status(422).send({ error: errors });
+    return;
+  }
   try {
     const data = await fs.promises.readFile(path.join(__dirname, 'notes.json'));
     const notes = JSON.parse(data);
