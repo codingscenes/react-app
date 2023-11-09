@@ -1,7 +1,7 @@
 import { QueryClientProvider } from '@tanstack/react-query';
 import { Navigate, RouterProvider, createBrowserRouter } from 'react-router-dom';
 
-import EditNote from './components/EditNote';
+import EditNote, { action as noteAction, loader as noteLoader } from './components/EditNote';
 import FindNote from './components/FindNote';
 import Layout from './components/Layout';
 import NewNote from './components/NewNote';
@@ -24,7 +24,7 @@ const router = createBrowserRouter([
       },
       { path: '/new-note', element: <NewNote /> },
       { path: '/view-note/:id', element: <ViewNote /> },
-      { path: '/edit-note/:id', element: <EditNote /> },
+      { path: '/edit-note/:id', element: <EditNote />, loader: noteLoader, action: noteAction },
       { path: '/find-note', element: <FindNote /> },
     ],
   },

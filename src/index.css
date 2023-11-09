@@ -358,3 +358,7 @@ main .notify-form .btn {
     transform: rotate(360deg);
   }
 }
+
+.is-fetching {
+  margin-left: 10px;
+}
